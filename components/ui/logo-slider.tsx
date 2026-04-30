@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import styles from "@/components/ui/logo-slider.module.css";
 
 export type LogoSliderItem = {
   name: string;
@@ -18,39 +16,21 @@ export type LogoSliderProps = {
 };
 
 function LogoTile({ item }: { item: LogoSliderItem }) {
-  const [hasError, setHasError] = useState(false);
-  const initials = item.name
-    .split(/[\s-]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join("");
-
   return (
-    <div className="logo-slider-tile">
-      <div className="logo-slider-visual">
-      {!hasError ? (
-        <div className="logo-slider-image-wrap">
+    <div className={styles.tile}>
+      <div className={styles.visual}>
+        <div className={styles.imageWrap}>
           <Image
             src={item.src}
             alt={item.alt ?? item.name}
             width={72}
             height={72}
             unoptimized
-            className="logo-slider-image"
-            onError={() => {
-              setHasError(true);
-            }}
+            className={styles.image}
           />
         </div>
-      ) : null}
-      {hasError ? (
-        <div className="logo-slider-fallback">
-          <span className="logo-slider-monogram">{initials || item.name.slice(0, 2).toUpperCase()}</span>
-        </div>
-      ) : null}
       </div>
-      <span className="logo-slider-label">{item.name}</span>
+      <span className={styles.label}>{item.name}</span>
     </div>
   );
 }
@@ -61,17 +41,17 @@ export function LogoSlider({
   direction = "left",
   className,
 }: LogoSliderProps) {
-  const repeatedLogos = useMemo(() => [...logos, ...logos], [logos]);
+  const repeatedLogos = [...logos, ...logos];
   const animationDuration = `${speed}s`;
 
   return (
-    <div className={cn("logo-slider-shell", className)}>
-      <div className="logo-slider-fade logo-slider-fade-left" />
-      <div className="logo-slider-fade logo-slider-fade-right" />
+    <div className={cn(styles.shell, className)}>
+      <div className={`${styles.fade} ${styles.fadeLeft}`} />
+      <div className={`${styles.fade} ${styles.fadeRight}`} />
       <div
         className={cn(
-          "logo-slider-track",
-          direction === "left" ? "logo-slider-left" : "logo-slider-right",
+          styles.track,
+          direction === "left" ? styles.left : styles.right,
         )}
         style={{ animationDuration }}
         aria-hidden="true"

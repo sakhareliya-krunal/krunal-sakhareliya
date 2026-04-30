@@ -1,19 +1,18 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import { profile } from "@/data/content";
 import { SpotlightNavbar } from "@/components/ui/spotlight-navbar";
+import styles from "@/components/ui/site-header.module.css";
 
-export function SiteHeader() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+type SiteHeaderProps = {
+  isHome?: boolean;
+};
 
+export function SiteHeader({ isHome = false }: SiteHeaderProps) {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50">
         <div
-          className={`section-shell pt-4 md:pt-5 lg:pt-6 ${
-            isHome ? "site-header site-header--overlay" : "site-header"
+          className={`section-shell pt-4 md:pt-5 lg:pt-6 ${styles.header} ${
+            isHome ? styles.overlay : ""
           }`}
         >
           <SpotlightNavbar

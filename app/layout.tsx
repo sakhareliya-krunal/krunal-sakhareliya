@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppShell } from "@/components/ui/app-shell";
 import { SiteFooter } from "@/components/ui/site-footer";
 import "./globals.css";
 
@@ -19,10 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <div className="min-h-screen">
-          {children}
-          <SiteFooter />
-        </div>
+        <AppShell footer={<SiteFooter />}>{children}</AppShell>
       </body>
     </html>
   );

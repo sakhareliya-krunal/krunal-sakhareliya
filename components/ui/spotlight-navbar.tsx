@@ -1,10 +1,10 @@
 "use client";
 
-import { AnimatePresence, animate, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import styles from "@/components/ui/spotlight-navbar.module.css";
 
 export interface NavItem {
   label: string;
@@ -45,15 +45,13 @@ export function SpotlightNavbar({
 }: SpotlightNavbarProps) {
   const pathname = usePathname();
   const navRef = useRef<HTMLDivElement>(null);
-  const spotlightX = useRef(0);
-  const ambienceX = useRef(0);
   const [anchorActiveIndex, setAnchorActiveIndex] = useState(defaultActiveIndex);
   const [hoverX, setHoverX] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const activeIndex =
     mode === "route" ? items.findIndex((item) => item.href === pathname) : anchorActiveIndex;
 
-  const moveToItem = (index: number, options?: { immediate?: boolean }) => {
+  const setNavTarget = (index: number) => {
     const nav = navRef.current;
 
     if (!nav || index < 0) {
@@ -70,45 +68,12 @@ export function SpotlightNavbar({
     const itemRect = activeItem.getBoundingClientRect();
     const targetX = itemRect.left - navRect.left + itemRect.width / 2;
 
-    if (options?.immediate) {
-      spotlightX.current = targetX;
-      ambienceX.current = targetX;
-      nav.style.setProperty("--spotlight-x", `${targetX}px`);
-      nav.style.setProperty("--ambience-x", `${targetX}px`);
-      return;
-    }
-
-    animate(ambienceX.current, targetX, {
-      type: "spring",
-      stiffness: 220,
-      damping: 24,
-      onUpdate: (value) => {
-        ambienceX.current = value;
-        nav.style.setProperty("--ambience-x", `${value}px`);
-      },
-    });
-
-    if (hoverX === null) {
-      animate(spotlightX.current, targetX, {
-        type: "spring",
-        stiffness: 220,
-        damping: 24,
-        onUpdate: (value) => {
-          spotlightX.current = value;
-          nav.style.setProperty("--spotlight-x", `${value}px`);
-        },
-      });
-    }
+    nav.style.setProperty("--spotlight-x", `${targetX}px`);
+    nav.style.setProperty("--ambience-x", `${targetX}px`);
   };
 
   useEffect(() => {
-    moveToItem(activeIndex, { immediate: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    moveToItem(activeIndex);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setNavTarget(activeIndex);
   }, [activeIndex]);
 
   useEffect(() => {
@@ -122,13 +87,12 @@ export function SpotlightNavbar({
       const rect = nav.getBoundingClientRect();
       const x = event.clientX - rect.left;
       setHoverX(x);
-      spotlightX.current = x;
       nav.style.setProperty("--spotlight-x", `${x}px`);
     };
 
     const handleMouseLeave = () => {
       setHoverX(null);
-      moveToItem(activeIndex);
+      setNavTarget(activeIndex);
     };
 
     nav.addEventListener("mousemove", handleMouseMove);
@@ -138,7 +102,6 @@ export function SpotlightNavbar({
       nav.removeEventListener("mousemove", handleMouseMove);
       nav.removeEventListener("mouseleave", handleMouseLeave);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex]);
 
   useEffect(() => {
@@ -223,8 +186,13 @@ export function SpotlightNavbar({
   };
 
   return (
-    <div className={cn("relative", className)}>
-      <div className="spotlight-nav-mobile flex items-center justify-between gap-3 rounded-[1.5rem] px-4 py-3 lg:hidden">
+    <div className={cn(styles.navShell, className)}>
+      <div
+        className={cn(
+          styles.mobileBar,
+          "spotlight-nav-mobile flex items-center justify-between gap-3 rounded-[1.5rem] px-4 py-3 lg:hidden",
+        )}
+      >
         {brand ? (
           <Link
             href={brand.href}
@@ -244,7 +212,10 @@ export function SpotlightNavbar({
               onClick={() => {
                 setMenuOpen(false);
               }}
-              className="spotlight-cta hidden rounded-full px-3.5 py-2 text-xs font-medium sm:inline-flex"
+              className={cn(
+                styles.cta,
+                "hidden rounded-full px-3.5 py-2 text-xs font-medium sm:inline-flex",
+              )}
             >
               {cta.label}
             </Link>
@@ -257,93 +228,104 @@ export function SpotlightNavbar({
             onClick={() => {
               setMenuOpen((value) => !value);
             }}
-            className="mobile-nav-toggle relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.05] text-white"
+            className={cn(
+              styles.mobileToggle,
+              "relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.05] text-white",
+            )}
           >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -5 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute h-[1.5px] w-5 rounded-full bg-current"
+            <span
+              className={cn(
+                styles.line,
+                menuOpen ? styles.lineTopOpen : "-translate-y-[5px]",
+                "absolute h-[1.5px] w-5 rounded-full bg-current",
+              )}
             />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="absolute h-[1.5px] w-5 rounded-full bg-current"
+            <span
+              className={cn(
+                styles.line,
+                menuOpen ? styles.lineMiddleOpen : "",
+                "absolute h-[1.5px] w-5 rounded-full bg-current",
+              )}
             />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 5 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute h-[1.5px] w-5 rounded-full bg-current"
+            <span
+              className={cn(
+                styles.line,
+                menuOpen ? styles.lineBottomOpen : "translate-y-[5px]",
+                "absolute h-[1.5px] w-5 rounded-full bg-current",
+              )}
             />
           </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {menuOpen ? (
-          <motion.div
-            initial={{ opacity: 0, y: -14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="spotlight-mobile-panel mt-3 rounded-[1.5rem] border border-white/12 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.32)] lg:hidden"
-          >
-            <nav className="grid gap-2">
-              {items.map((item, index) =>
-                mode === "route" ? (
-                  <Link
-                    href={item.href}
-                    key={item.href}
-                    onClick={() => {
-                      handleItemClick(item, index);
-                    }}
-                    className={cn(
-                      "rounded-[1rem] px-4 py-3 text-sm font-medium transition-colors duration-200",
-                      activeIndex === index
-                        ? "bg-[rgba(255,138,61,0.88)] text-slate-950"
-                        : "border border-white/8 bg-white/[0.03] text-[var(--foreground)] hover:bg-white/[0.06]",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      handleItemClick(item, index);
-                    }}
-                    className={cn(
-                      "rounded-[1rem] px-4 py-3 text-sm font-medium transition-colors duration-200",
-                      activeIndex === index
-                        ? "bg-[rgba(255,138,61,0.88)] text-slate-950"
-                        : "border border-white/8 bg-white/[0.03] text-[var(--foreground)] hover:bg-white/[0.06]",
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                ),
-              )}
-            </nav>
-
-            {cta ? (
+      <div
+        className={cn(
+          styles.mobilePanel,
+          menuOpen ? styles.mobilePanelOpen : "",
+          "mt-3 rounded-[1.5rem] border border-white/12 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.32)] lg:hidden",
+        )}
+      >
+        <nav className="grid gap-2">
+          {items.map((item, index) =>
+            mode === "route" ? (
               <Link
-                href={cta.href}
+                href={item.href}
+                key={item.href}
                 onClick={() => {
-                  setMenuOpen(false);
+                  handleItemClick(item, index);
                 }}
-                className="spotlight-cta mt-4 inline-flex w-full items-center justify-center rounded-[1rem] px-4 py-3 text-sm font-medium"
+                className={cn(
+                  "rounded-[1rem] px-4 py-3 text-sm font-medium transition-colors duration-200",
+                  activeIndex === index
+                    ? "bg-[rgba(255,138,61,0.88)] text-slate-950"
+                    : "border border-white/8 bg-white/[0.03] text-[var(--foreground)] hover:bg-white/[0.06]",
+                )}
               >
-                {cta.label}
+                {item.label}
               </Link>
-            ) : null}
-          </motion.div>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleItemClick(item, index);
+                }}
+                className={cn(
+                  "rounded-[1rem] px-4 py-3 text-sm font-medium transition-colors duration-200",
+                  activeIndex === index
+                    ? "bg-[rgba(255,138,61,0.88)] text-slate-950"
+                    : "border border-white/8 bg-white/[0.03] text-[var(--foreground)] hover:bg-white/[0.06]",
+                )}
+              >
+                {item.label}
+              </a>
+            ),
+          )}
+        </nav>
+
+        {cta ? (
+          <Link
+            href={cta.href}
+            onClick={() => {
+              setMenuOpen(false);
+            }}
+            className={cn(
+              styles.cta,
+              "mt-4 inline-flex w-full items-center justify-center rounded-[1rem] px-4 py-3 text-sm font-medium",
+            )}
+          >
+            {cta.label}
+          </Link>
         ) : null}
-      </AnimatePresence>
+      </div>
 
       <nav
         ref={navRef}
-        className="spotlight-nav hidden items-center justify-between gap-5 px-5 lg:px-7 lg:flex"
+        className={cn(
+          styles.desktopNav,
+          "spotlight-nav hidden items-center justify-between gap-5 px-5 lg:flex lg:px-7",
+        )}
       >
         {brand ? (
           <Link
@@ -402,7 +384,10 @@ export function SpotlightNavbar({
         {cta ? (
           <Link
             href={cta.href}
-            className="spotlight-cta relative z-10 shrink-0 rounded-full px-4 py-2.5 text-sm font-medium"
+            className={cn(
+              styles.cta,
+              "relative z-10 shrink-0 rounded-full px-4 py-2.5 text-sm font-medium",
+            )}
           >
             {cta.label}
           </Link>
@@ -411,23 +396,13 @@ export function SpotlightNavbar({
         )}
 
         <div
-          className="pointer-events-none absolute inset-0 z-[1] transition-opacity duration-300"
-          style={{
-            opacity: hoverX !== null ? 1 : 0,
-            background:
-              "radial-gradient(140px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 52%)",
-          }}
+          className={cn(
+            styles.desktopGlow,
+            hoverX !== null ? styles.desktopGlowActive : styles.desktopGlowInactive,
+          )}
         />
-
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 z-[2] h-[2px] w-full"
-          style={{
-            background:
-              "radial-gradient(72px circle at var(--ambience-x) 0%, var(--ambience-color) 0%, transparent 100%)",
-          }}
-        />
-
-        <div className="absolute bottom-0 left-0 z-0 h-px w-full bg-white/10" />
+        <div className={styles.desktopAmbience} />
+        <div className={styles.desktopDivider} />
       </nav>
     </div>
   );

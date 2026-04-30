@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { profile } from "@/data/content";
+import styles from "@/components/ui/site-footer.module.css";
 
 const footerNav = [
   { label: "About", href: "/about" },
@@ -55,23 +56,23 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
+    <footer className={styles.footer}>
       <div className="section-shell">
-        <div className="site-footer__panel">
-          <div className="site-footer__grid">
-            <div className="site-footer__brand">
+        <div className={styles.panel}>
+          <div className={styles.grid}>
+            <div className={styles.brand}>
               <p className="eyebrow">Portfolio Footer</p>
-              <h2 className="display-title site-footer__title">{profile.name}</h2>
-              <p className="site-footer__role">{profile.title}</p>
-              <p className="site-footer__summary">
+              <h2 className={`display-title ${styles.title}`}>{profile.name}</h2>
+              <p className={styles.role}>{profile.title}</p>
+              <p className={styles.summary}>
                 Building Flutter products with reliable UI flows, strong integrations, and
                 AI-assisted development support.
               </p>
             </div>
 
-            <div className="site-footer__group">
-              <p className="site-footer__label">Navigate</p>
-              <nav className="site-footer__links" aria-label="Footer navigation">
+            <div className={styles.group}>
+              <p className={styles.label}>Navigate</p>
+              <nav className={styles.links} aria-label="Footer navigation">
                 {footerNav.map((item) => (
                   <Link key={item.href} href={item.href}>
                     {item.label}
@@ -80,39 +81,39 @@ export function SiteFooter() {
               </nav>
             </div>
 
-            <div className="site-footer__group">
-              <p className="site-footer__label">Social</p>
-              <ul className="site-footer__socials" aria-label="Footer social links">
+            <div className={styles.group}>
+              <p className={styles.label}>Social</p>
+              <ul className={styles.socials} aria-label="Footer social links">
                 {footerSocials.map((item) => {
                   const isEmail = item.href.startsWith("mailto:");
 
                   return (
-                    <li key={item.label} className="site-footer__social-item">
+                    <li key={item.label} className={styles.socialItem}>
                       <a
                         href={item.href}
                         aria-label={item.label}
                         data-social={item.social}
                         target={isEmail ? undefined : "_blank"}
                         rel={isEmail ? undefined : "noreferrer"}
-                        className="site-footer__social-link"
+                        className={styles.socialLink}
                       >
-                        <span className="site-footer__social-fill" />
-                        <span className="site-footer__social-icon">{item.icon}</span>
+                        <span className={styles.socialFill} />
+                        <span className={styles.socialIcon}>{item.icon}</span>
                       </a>
-                      <span className="site-footer__social-tooltip">{item.label}</span>
+                      <span className={styles.socialTooltip}>{item.label}</span>
                     </li>
                   );
                 })}
               </ul>
-              <p className="site-footer__meta">{profile.location}</p>
+              <p className={styles.meta}>{profile.location}</p>
             </div>
           </div>
 
-          <div className="site-footer__bottom">
+          <div className={styles.bottom}>
             <p>
-              © {year} {profile.name}
+              Â© {year} {profile.name}
             </p>
-            <p>Flutter Developer · Ahmedabad, India</p>
+            <p>Flutter Developer Â· Ahmedabad, India</p>
           </div>
         </div>
       </div>

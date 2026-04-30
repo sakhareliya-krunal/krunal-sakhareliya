@@ -8,7 +8,7 @@ import { education, experience, profile, projects, skillLogos } from "@/data/con
 export default function Home() {
   return (
     <main id="home" className="grain pb-20">
-      <SiteHeader />
+      <SiteHeader isHome />
       <BioluminescentHero />
 
       <section id="about" className="home-section section-shell py-8 md:py-14">
