@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { InitialLoader } from "@/components/ui/initial-loader";
+import { PageTransition } from "@/components/ui/page-transition";
 
 const INTRO_SESSION_KEY = "krunal-portfolio:intro-seen";
 const INTRO_DURATION_MS = 1400;
@@ -12,7 +13,7 @@ type AppShellProps = {
 };
 
 export function AppShell({ children, footer }: AppShellProps) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
 
   useEffect(() => {
     const introSeen = window.sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
@@ -22,7 +23,7 @@ export function AppShell({ children, footer }: AppShellProps) {
       if (!introSeen) {
         window.sessionStorage.setItem(INTRO_SESSION_KEY, "true");
       }
-      setIsLoading(false);
+      setShowIntro(!introSeen);
     }, delay);
 
     return () => {
@@ -30,14 +31,18 @@ export function AppShell({ children, footer }: AppShellProps) {
     };
   }, []);
 
-  if (isLoading) {
-    return <InitialLoader />;
-  }
-
   return (
-    <div className="min-h-screen">
-      {children}
-      {footer}
-    </div>
+    <>
+      <PageTransition footer={footer}>{children}</PageTransition>
+
+      {showIntro ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(9,17,31,0.86)] backdrop-blur-sm"
+        >
+          <InitialLoader />
+        </div>
+      ) : null}
+    </>
   );
 }
