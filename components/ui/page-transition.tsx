@@ -10,6 +10,7 @@ type PageTransitionProps = {
 };
 
 const PAGE_EASING = [0.22, 1, 0.36, 1] as const;
+const EXIT_EASING = [0.4, 0, 1, 1] as const;
 
 export function PageTransition({ children, footer }: PageTransitionProps) {
   const pathname = usePathname();
@@ -23,9 +24,9 @@ export function PageTransition({ children, footer }: PageTransitionProps) {
         exit: { opacity: 0, transition: { duration: 0.01 } },
       }
     : {
-        hidden: { opacity: 0, y: 16, transition: { duration: 0.01 } },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: PAGE_EASING } },
-        exit: { opacity: 0, y: -10, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] as const } },
+        hidden: { opacity: 0, transition: { duration: 0.01 } },
+        visible: { opacity: 1, transition: { duration: 0.14, ease: PAGE_EASING } },
+        exit: { opacity: 0, transition: { duration: 0.08, ease: EXIT_EASING } },
       };
 
   const glowVariants = reduceMotion
@@ -35,13 +36,13 @@ export function PageTransition({ children, footer }: PageTransitionProps) {
         exit: { opacity: 0, transition: { duration: 0.01 } },
       }
     : {
-        hidden: { opacity: 0.3, scale: 0.985, transition: { duration: 0.01 } },
-        visible: { opacity: 0.18, scale: 1, transition: { duration: 0.42, ease: PAGE_EASING } },
-        exit: { opacity: 0, scale: 1.01, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] as const } },
+        hidden: { opacity: 0, transition: { duration: 0.01 } },
+        visible: { opacity: 0.14, transition: { duration: 0.14, ease: PAGE_EASING } },
+        exit: { opacity: 0, transition: { duration: 0.08, ease: EXIT_EASING } },
       };
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence initial={false}>
       <motion.div
         key={pathname}
         className="relative isolate min-h-screen overflow-hidden"
