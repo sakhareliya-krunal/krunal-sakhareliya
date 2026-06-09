@@ -1,26 +1,24 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/ui/app-shell";
-import { SiteFooter } from "@/components/ui/site-footer";
+import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Krunal Sakhareliya",
+    default: "Krunal Sakhareliya | Flutter Developer",
     template: "%s | Krunal Sakhareliya",
   },
   description:
-    "A cinematic portfolio blending product thinking, engineering, and immersive 3D storytelling.",
+    "Flutter developer building responsive products, API-driven flows, and connected application experiences.",
+  metadataBase: new URL("https://krunal-sakhareliya.netlify.app"),
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body suppressHydrationWarning>
-        <AppShell footer={<SiteFooter />}>{children}</AppShell>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

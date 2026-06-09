@@ -1,33 +1,16 @@
-type Project = {
-  title: string;
-  summary: string;
-  projectType: string;
-  role: string;
-  overview: string;
-  productCapabilities: string[];
-  frontendDetails: string;
-  frontendArchitecture: string[];
-  frontendFeatures: string[];
-  stack: string[];
-  frontendStack: string[];
-  securityReliability: string[];
-  notes: string;
-  liveUrl?: string;
-  backendDetails?: string;
-  backendArchitecture?: string[];
-  backendCapabilities?: string[];
-  backendStack?: string[];
-};
-
 export const profile = {
   name: "Krunal Sakhareliya",
   title: "Flutter Developer",
-  bio: "Flutter Developer with work experience at Ongoing Team from November 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
+  role: "Flutter Developer",
+  bio:
+    "Flutter Developer with work experience at Ongoing Team from November 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
   location: "Ahmedabad, India",
   availability:
     "Available for Flutter roles, product engineering opportunities, and mobile app collaborations.",
   email: "sakhareliyakrunal03@gmail.com",
   phone: "+91 7990880618",
+  github: "https://github.com/sakhareliya-krunal",
+  linkedin: "https://www.linkedin.com/in/krunal-sakhareliya-2925582b9",
   socials: [
     { label: "GitHub", href: "https://github.com/sakhareliya-krunal" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/krunal-sakhareliya-2925582b9" },
@@ -35,61 +18,41 @@ export const profile = {
   ],
 };
 
-export const education = [
-  {
-    period: "2020",
-    title: "10th Standard",
-    subtitle: "Academic Foundation",
-    summary: "Completed 10th standard with 84 percentile and 66%.",
-  },
-  {
-    period: "2022",
-    title: "12th Standard",
-    subtitle: "Higher Secondary",
-    summary: "Completed 12th standard with 86 percentile and 75%.",
-  },
-  {
-    period: "2022 – 2025",
-    title: "Bachelor of Computer Application",
-    subtitle: "Undergraduate Degree",
-    summary: "Graduated with 8.67 CGPA, building the technical base for application development and software problem solving.",
-  },
-];
-
-export const experience = [
-  {
-    period: "Nov 2024 – Jan 2025",
-    title: "Internship",
-    subtitle: "Ongoing Team",
-    summary: "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of my company experience.",
-  },
-  {
-    period: "Nov 2024 – Oct 2025",
-    title: "Work Experience",
-    subtitle: "Ongoing Team",
-    summary: "My work experience at Ongoing Team ran from November 2024 to October 2025, where I worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements.",
-  },
-  {
-    period: "Oct 2025 – Present",
-    title: "AI-Assisted Product Building",
-    subtitle: "Websites and Applications",
-    summary: "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to create websites and applications with faster iteration, stronger execution, and better development support.",
-  },
-  {
-    period: "Nov 2025 – Present",
-    title: "Prompt Engineering Basics",
-    subtitle: "AI Workflow Practice",
-    summary: "Learning how to guide AI systems more effectively through role definition, task clarity, and structured context for better results.",
-  },
-];
+export type Project = {
+  slug: string;
+  title: string;
+  index: string;
+  category: string;
+  projectType: string;
+  summary: string;
+  role: string;
+  overview: string;
+  productCapabilities: string[];
+  frontendDetails: string;
+  frontendArchitecture: string[];
+  frontendFeatures: string[];
+  technologies: string[];
+  frontendStack: string[];
+  backendDetails?: string;
+  backendArchitecture?: string[];
+  backendCapabilities?: string[];
+  backendStack?: string[];
+  securityReliability: string[];
+  notes: string;
+  liveUrl: string;
+  tone: "cyan" | "violet" | "rose" | "amber";
+  features: string[];
+};
 
 export const projects: Project[] = [
   {
+    slug: "presynx",
     title: "Presynx",
+    index: "01",
+    category: "Healthcare queue platform",
+    projectType: "Healthcare queue platform",
     summary:
       "End-to-end healthcare queue management platform with a Flutter kiosk and staff application, plus a Laravel-based backend and admin system for multi-tenant healthcare operations.",
-    projectType:
-      "End-to-end healthcare queue management platform with a Flutter kiosk application and a Laravel-based backend/admin system.",
     role:
       "Flutter developer for the kiosk and staff-facing application, with OpenAI Codex and Cursor used to support delivery across the Flutter codebase.",
     overview:
@@ -113,16 +76,7 @@ export const projects: Project[] = [
       "Android immersive mode, kiosk-oriented behavior, boot handling, device admin or lock-task support, USB host support, Bluetooth printer support, thermal printing, voice announcements, and landing media playback.",
       "Build-time environment switching between local and production APIs.",
     ],
-    stack: [
-      "Flutter",
-      "Dart",
-      "BLoC",
-      "Dio",
-      "GoRouter",
-      "Firebase",
-      "FCM",
-      "Thermal Printing",
-    ],
+    technologies: ["Flutter", "Dart", "BLoC", "Dio", "GoRouter", "Firebase", "FCM", "Thermal Printing"],
     frontendStack: [
       "Flutter",
       "Dart",
@@ -172,13 +126,21 @@ export const projects: Project[] = [
     notes:
       "Presynx stands out through its combination of Flutter kiosk architecture, hardware integration, queue generation business rules, and a multi-tenant Laravel backend with healthcare workflow support.",
     liveUrl: "https://presynx.com/",
+    tone: "cyan",
+    features: [
+      "Self-service kiosk, visitor lookup, OTP verification, token generation, and serving board flows",
+      "Protected admin and staff queue handling, consultation pages, and auth-aware routing",
+      "Android kiosk behavior, thermal printing, voice announcements, and landing media playback",
+    ],
   },
   {
+    slug: "yujix",
     title: "Yujix",
+    index: "02",
+    category: "Business productivity app",
+    projectType: "Business productivity app",
     summary:
       "Multi-platform Flutter application for meetings, contacts, surveys, events, billing flows, and business operations with responsive UI and integration-heavy user journeys.",
-    projectType:
-      "Flutter application for meeting, contact, survey, event, and account workflows with analytics, notifications, and payment-related frontend integration.",
     role:
       "Flutter developer responsible for the frontend application, responsive layouts, user flows, and platform integrations across the app experience.",
     overview:
@@ -201,7 +163,7 @@ export const projects: Project[] = [
       "Firebase push token registration after login, route analytics observation, local notification channels, platform-specific implementations, contact permission handling, and import or export flows.",
       "Razorpay integration on the Flutter side and responsive UI support across device sizes.",
     ],
-    stack: [],
+    technologies: ["Flutter", "Dart", "GoRouter", "Firebase", "Razorpay", "FL Chart", "Google Sign-In"],
     frontendStack: [
       "Flutter",
       "Dart",
@@ -233,13 +195,21 @@ export const projects: Project[] = [
     notes:
       "Yujix is presented here strictly as a Flutter frontend contribution, with emphasis on responsive UI, navigation structure, integrations, and product-facing user flows.",
     liveUrl: "https://app.yujix.com/",
+    tone: "violet",
+    features: [
+      "Meetings, contacts, surveys, analytics, events, quotations, invoices, plans, and profile flows",
+      "Authentication restoration, Google sign-in, notifications, analytics hooks, and local persistence",
+      "Responsive web and mobile screens with contact import/export and payment-facing integration",
+    ],
   },
   {
+    slug: "trust-up",
     title: "Trust Up",
+    index: "03",
+    category: "Community platform",
+    projectType: "Community resource platform",
     summary:
       "Community-focused platform for matching needs, offers, resources, and local opportunities through hubs, discovery flows, and inclusive communication features.",
-    projectType:
-      "Frontend application for community resource discovery, exchange, and hub-based connection with multilingual and communication-focused user workflows.",
     role:
       "Frontend developer contributing to user-facing flows, responsive UI behavior, and app experiences centered on discovery, communication, and community participation.",
     overview:
@@ -261,7 +231,7 @@ export const projects: Project[] = [
       "Hub participation, public and direct communication surfaces, and user-friendly exploration of people, resources, and updates.",
       "Multilingual support and accessible content presentation aimed at broader inclusion and easier participation.",
     ],
-    stack: ["Flutter", "Community Platform", "Messaging", "Resource Discovery", "Responsive UI"],
+    technologies: ["Flutter", "Responsive UI", "Messaging Flows", "Directory Browsing", "Community Hubs", "Multilingual UX"],
     frontendStack: [
       "Flutter",
       "Responsive UI",
@@ -279,13 +249,21 @@ export const projects: Project[] = [
     notes:
       "Trust Up is presented here as a frontend-focused contribution centered on community discovery, inclusive UX, and product flows that support real resource-sharing and connection.",
     liveUrl: "https://trustup.app/",
+    tone: "rose",
+    features: [
+      "Needs, offers, resource discovery, and community-oriented feed flows",
+      "Hub participation, public walls, and direct communication surfaces",
+      "Readable responsive layouts and multilingual UX for broader participation",
+    ],
   },
   {
+    slug: "ongoing-forge",
     title: "Ongoing Forge",
+    index: "04",
+    category: "SaaS collaboration suite",
+    projectType: "SaaS collaboration suite",
     summary:
       "Full-stack SaaS project-management platform built with PHP, Laravel, MySQL, and Vue.js for collaboration, task planning, and organization workflows.",
-    projectType:
-      "Full-stack web application for project management, collaboration, task planning, forms, and organization-level workflow management.",
     role:
       "Full-stack web developer contributing across the Laravel backend, MySQL data model, and Vue.js product interface for project and team workflows.",
     overview:
@@ -307,7 +285,7 @@ export const projects: Project[] = [
       "Chat, meeting, and whiteboard collaboration flows that support real-time teamwork within the product.",
       "Forms builder, dashboard views, and organization-management surfaces for broader business workflow support.",
     ],
-    stack: ["PHP", "Laravel", "MySQL", "Vue.js", "SaaS"],
+    technologies: ["PHP", "Laravel", "MySQL", "Vue.js", "SaaS", "Gantt Views", "Forms Builder"],
     frontendStack: [
       "Vue.js",
       "JavaScript",
@@ -322,7 +300,7 @@ export const projects: Project[] = [
     backendArchitecture: [
       "Laravel structures the application around organization-level workflow management, project execution, collaboration features, and shared business logic.",
       "MySQL persists project, team, task, form, and collaboration data in a relational model that supports multi-entity SaaS workflows.",
-      "Backend services coordinate the web application’s operational flows, task state, communication support, and structured management features.",
+      "Backend services coordinate the application's operational flows, task state, communication support, and structured management features.",
     ],
     backendCapabilities: [
       "Project, team, and organization management backed by application logic for task planning, execution, and collaboration workflows.",
@@ -338,6 +316,65 @@ export const projects: Project[] = [
     notes:
       "Ongoing Forge is presented here as a full-stack SaaS collaboration project built with PHP, Laravel, MySQL, and Vue.js, with emphasis on project workflow clarity, collaboration tooling, and scalable organization management.",
     liveUrl: "https://ongoingforge.com/",
+    tone: "amber",
+    features: [
+      "Kanban and Gantt-oriented project workflows, tasks, teams, and workspace experiences",
+      "Chat, meeting, whiteboard, dashboard, and organization-management surfaces",
+      "Laravel and MySQL backend support for structured SaaS collaboration workflows",
+    ],
+  },
+];
+
+export const experience = [
+  {
+    period: "Nov 2024 - Jan 2025",
+    title: "Internship",
+    organization: "Ongoing Team",
+    description:
+      "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of company experience.",
+  },
+  {
+    period: "Nov 2024 - Oct 2025",
+    title: "Work Experience",
+    organization: "Ongoing Team",
+    description:
+      "Worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements.",
+  },
+  {
+    period: "Oct 2025 - Present",
+    title: "AI-Assisted Product Building",
+    organization: "Websites and Applications",
+    description:
+      "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to create websites and applications with faster iteration, stronger execution, and better development support.",
+  },
+  {
+    period: "Nov 2025 - Present",
+    title: "Prompt Engineering Basics",
+    organization: "AI Workflow Practice",
+    description:
+      "Learning how to guide AI systems more effectively through role definition, task clarity, and structured context for better results.",
+  },
+];
+
+export const education = [
+  {
+    period: "2020",
+    title: "10th Standard",
+    subtitle: "Academic Foundation",
+    summary: "Completed 10th standard with 84 percentile and 66%.",
+  },
+  {
+    period: "2022",
+    title: "12th Standard",
+    subtitle: "Higher Secondary",
+    summary: "Completed 12th standard with 86 percentile and 75%.",
+  },
+  {
+    period: "2022 - 2025",
+    title: "Bachelor of Computer Application",
+    subtitle: "Undergraduate Degree",
+    summary:
+      "Graduated with 8.67 CGPA, building the technical base for application development and software problem solving.",
   },
 ];
 
@@ -354,125 +391,34 @@ export const skills = [
   "Cross-Platform App Delivery",
 ];
 
-export const skillLogos = [
-  { name: "Flutter", src: "/skills/flutter.svg", alt: "Flutter logo" },
-  { name: "Dart", src: "/skills/dart.svg", alt: "Dart logo" },
-  { name: "Dio", src: "/skills/dio.svg", alt: "Dio icon" },
-  { name: "BLoC", src: "/skills/bloc.svg", alt: "BLoC icon" },
-  { name: "GoRouter", src: "/skills/gorouter.svg", alt: "GoRouter icon" },
-  {
-    name: "Firebase Auth",
-    src: "/skills/firebase-auth.svg",
-    alt: "Firebase Authentication logo",
-  },
-  {
-    name: "FCM",
-    src: "/skills/firebase-messaging.svg",
-    alt: "Firebase Cloud Messaging logo",
-  },
-  {
-    name: "Responsive UI",
-    src: "/skills/responsive-ui.svg",
-    alt: "Responsive UI icon",
-  },
-  {
-    name: "API Integration",
-    src: "/skills/api-integration.svg",
-    alt: "API integration icon",
-  },
-  {
-    name: "Cross Platform",
-    src: "/skills/cross-platform.svg",
-    alt: "Cross-platform app development icon",
-  },
+export type TechStackItem = {
+  name: string;
+  icon: string;
+};
+
+export const techStack: TechStackItem[] = [
+  { name: "Flutter", icon: "/skills/flutter.svg" },
+  { name: "Dart", icon: "/skills/dart.svg" },
+  { name: "Dio", icon: "/skills/dio.svg" },
+  { name: "BLoC", icon: "/skills/bloc.svg" },
+  { name: "GoRouter", icon: "/skills/gorouter.svg" },
+  { name: "Firebase Auth", icon: "/skills/firebase-auth.svg" },
+  { name: "FCM", icon: "/skills/firebase-messaging.svg" },
+  { name: "Responsive UI", icon: "/skills/responsive-ui.svg" },
+  { name: "API Integration", icon: "/skills/api-integration.svg" },
+  { name: "Cross Platform", icon: "/skills/cross-platform.svg" },
 ];
 
-export const blogPosts = [
-  {
-    title: "Building Flutter Apps That Stay Maintainable",
-    date: "May 2026",
-    readTime: "8 min read",
-    tags: ["flutter", "architecture", "bloc"],
-    excerpt:
-      "How I think about routing, state boundaries, responsive UI, and API layers when a Flutter app has to grow beyond a few screens.",
-    featured: true,
-  },
-  {
-    title: "What I Learned From Healthcare Kiosk Work",
-    date: "Apr 2026",
-    readTime: "7 min read",
-    tags: ["kiosk", "android", "product"],
-    excerpt:
-      "Notes from building flows where device state, patient check-in, printing, OTP, and staff operations all need to feel dependable.",
-  },
-  {
-    title: "Using AI Tools Without Losing Engineering Control",
-    date: "Mar 2026",
-    readTime: "6 min read",
-    tags: ["ai", "workflow", "codex"],
-    excerpt:
-      "A practical look at using Claude, Codex, and Cursor as development support while still owning structure, validation, and implementation quality.",
-  },
-  {
-    title: "Responsive UI Lessons From Mobile Product Screens",
-    date: "Feb 2026",
-    readTime: "5 min read",
-    tags: ["ui", "responsive", "mobile"],
-    excerpt:
-      "The small layout decisions that keep dashboards, forms, and dense product screens usable across web, tablet, and mobile surfaces.",
-  },
-];
+export const indiaRegions = ["Gujarat", "Mumbai", "Bangalore"];
 
-export const testimonials = [
-  {
-    quote:
-      "Krunal is strongest when product flows need careful frontend execution, especially around responsive UI and app state.",
-    name: "Product Lead",
-    role: "Mobile application team",
-  },
-  {
-    quote:
-      "He approaches integration work patiently, keeps screens usable, and thinks through the actual user journey instead of only the happy path.",
-    name: "Engineering Collaborator",
-    role: "Flutter and backend workflow",
-  },
-  {
-    quote:
-      "The combination of Flutter delivery and AI-assisted iteration makes him fast without skipping the details that matter.",
-    name: "Project Partner",
-    role: "Web and app delivery",
-  },
-  {
-    quote:
-      "Krunal brings steady execution to multi-screen applications where routing, API calls, and platform behavior all meet.",
-    name: "Team Member",
-    role: "Product development",
-  },
-];
+export type FavoriteTool = {
+  name: string;
+  icon: string;
+};
 
-export const toolCategories = [
-  {
-    number: "01",
-    title: "Mobile",
-    subtitle: "Flutter Delivery",
-    items: ["Flutter", "Dart", "BLoC", "GoRouter", "Dio", "Firebase", "FCM"],
-  },
-  {
-    number: "02",
-    title: "Frontend",
-    subtitle: "Interfaces",
-    items: ["Responsive UI", "Tailwind CSS", "Vue.js", "Next.js", "TypeScript"],
-  },
-  {
-    number: "03",
-    title: "Backend",
-    subtitle: "Product APIs",
-    items: ["Laravel", "PHP", "MySQL", "REST APIs", "Sanctum", "Inertia.js"],
-  },
-  {
-    number: "04",
-    title: "Workflow",
-    subtitle: "AI Assisted",
-    items: ["OpenAI Codex", "Claude", "Cursor", "GitHub", "Prompt Engineering"],
-  },
+export const favoriteTools: FavoriteTool[] = [
+  { name: "Claude", icon: "/uses/claude.svg" },
+  { name: "OpenAI Codex", icon: "/uses/openai.svg" },
+  { name: "Cursor", icon: "/uses/cursor.svg" },
+  { name: "Gemini", icon: "/uses/gemini.svg" },
 ];
