@@ -19,6 +19,7 @@ import { useEffect, useRef, useState } from "react";
 import { BottomCta } from "@/components/bottom-cta";
 import { getGreeting } from "@/lib/greeting";
 import { profile } from "@/lib/content";
+import { KSLogo } from "@/components/ks-logo";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
@@ -89,7 +90,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className={`app-shell ${pathname === "/" ? "is-home" : "is-inner"}`}>
       <BackgroundScene home={pathname === "/"} />
       <Link className="corner-logo" href="/" aria-label="Krunal Sakhareliya home">
-        K<span>S</span>
+        <KSLogo className="corner-logo-mark" />
       </Link>
       <button
         className="command-button"
@@ -111,7 +112,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         aria-controls="mobile-command-sheet"
         onClick={() => (mobileOpen ? closeMobileNavigation() : setMobileOpen(true))}
       >
-        <span className="mobile-trigger-mark">KS</span>
+        <span className="mobile-trigger-mark">
+          <KSLogo className="mobile-trigger-logo" />
+        </span>
         <span>{currentPage}</span>
       </button>
 
