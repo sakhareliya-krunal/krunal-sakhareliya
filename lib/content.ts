@@ -409,8 +409,6 @@ export const techStack: TechStackItem[] = [
   { name: "Cross Platform", icon: "/skills/cross-platform.svg" },
 ];
 
-export const indiaRegions = ["Gujarat", "Mumbai", "Bangalore"];
-
 export type FavoriteTool = {
   name: string;
   icon: string;

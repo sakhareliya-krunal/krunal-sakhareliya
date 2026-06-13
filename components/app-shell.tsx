@@ -12,11 +12,11 @@ import {
   X,
   BriefcaseBusiness,
   FolderKanban,
-  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BottomCta } from "@/components/bottom-cta";
 import { getGreeting } from "@/lib/greeting";
 import { profile } from "@/lib/content";
 
@@ -25,7 +25,6 @@ const links = [
   { href: "/about", label: "About", icon: UserRound },
   { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/experience", label: "Experience", icon: BriefcaseBusiness },
-  { href: "/contact", label: "Contact", icon: MessageCircle },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -127,7 +126,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 key="greeting"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, filter: "blur(7px)" }}
+                exit={{ opacity: 0 }}
               >
                 <span>{greeting === "Good Night" ? "🌙" : "🌅"}</span>
                 {greeting}
@@ -137,8 +136,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 className="floating-nav"
                 aria-label="Primary navigation"
                 key="navigation"
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
                 {links.map((link) => {
                   const active = pathname === link.href;
@@ -149,20 +148,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                       className={active ? "active" : ""}
                       onClick={() => setMobileOpen(false)}
                     >
-                      {active && (
-                        <motion.span
-                          className="nav-active"
-                          layoutId="nav-active"
-                          transition={reducedMotion ? { duration: 0 } : undefined}
-                        />
-                      )}
+                      {active && <span className="nav-active" />}
                       <span>{link.label}</span>
                     </Link>
                   );
                 })}
-                <a className="nav-cta" href="mailto:sakhareliyakrunal03@gmail.com">
-                  Book a Call
-                </a>
+                <Link className="nav-cta" href="/contact" onClick={() => setMobileOpen(false)}>
+                  Contact
+                </Link>
               </motion.nav>
             )}
           </AnimatePresence>
@@ -189,9 +182,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              initial={reducedMotion ? false : { opacity: 0, y: 32, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={reducedMotion ? undefined : { opacity: 0, y: 24, scale: 0.98 }}
+              initial={reducedMotion ? false : { opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: 20 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="mobile-search-row">
@@ -246,6 +239,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </AnimatePresence>
 
       <div className="route-stage">{children}</div>
+      <BottomCta />
     </div>
   );
 }

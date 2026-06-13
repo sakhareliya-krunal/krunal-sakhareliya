@@ -33,21 +33,17 @@ export default function ProjectsPage() {
                   <span>{project.role}</span>
                 </section>
                 <section>
-                  <p className="project-section-label">Overview</p>
-                  <span>{project.overview}</span>
+                  <p className="project-section-label">Key outcomes</p>
+                  <ul className="project-capabilities">
+                    {project.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
                 </section>
               </div>
               <div className="project-case-grid">
                 <section>
-                  <p className="project-section-label">What the product does</p>
-                  <ul className="project-capabilities">
-                    {project.productCapabilities.map((capability) => (
-                      <li key={capability}>{capability}</li>
-                    ))}
-                  </ul>
-                </section>
-                <section>
-                  <p className="project-section-label">Tech stack</p>
+                  <p className="project-section-label">Core stack</p>
                   <ul className="project-tech-list">
                     {project.technologies.map((technology) => (
                       <li key={technology}>{technology}</li>
@@ -55,73 +51,56 @@ export default function ProjectsPage() {
                   </ul>
                 </section>
               </div>
-              <section className="project-detail-section">
-                <p className="project-section-label">Frontend</p>
-                <p>{project.frontendDetails}</p>
-                <div className="project-detail-columns">
-                  <div>
-                    <strong>Architecture</strong>
-                    <ul className="project-capabilities">
-                      {project.frontendArchitecture.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <strong>Features</strong>
-                    <ul className="project-capabilities">
-                      {project.frontendFeatures.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <ul className="project-tech-list project-tech-list--wide">
-                  {project.frontendStack.map((technology) => (
-                    <li key={technology}>{technology}</li>
-                  ))}
-                </ul>
-              </section>
-              {project.backendDetails ? (
+              <div className={`project-build-grid${project.backendDetails ? "" : " project-build-grid--single"}`}>
                 <section className="project-detail-section">
-                  <p className="project-section-label">Backend</p>
-                  <p>{project.backendDetails}</p>
-                  <div className="project-detail-columns">
-                    <div>
-                      <strong>Architecture</strong>
-                      <ul className="project-capabilities">
-                        {project.backendArchitecture?.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <strong>Capabilities</strong>
-                      <ul className="project-capabilities">
-                        {project.backendCapabilities?.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  {project.backendStack ? (
-                    <ul className="project-tech-list project-tech-list--wide">
-                      {project.backendStack.map((technology) => (
-                        <li key={technology}>{technology}</li>
+                  <p className="project-section-label">Frontend</p>
+                  <p>{project.frontendDetails}</p>
+                  <div>
+                    <strong>Highlights</strong>
+                    <ul className="project-capabilities project-capabilities--compact">
+                      {project.frontendFeatures.slice(0, 3).map((item) => (
+                        <li key={item}>{item}</li>
                       ))}
                     </ul>
-                  ) : null}
+                  </div>
+                  <ul className="project-tech-list project-tech-list--wide">
+                    {project.frontendStack.map((technology) => (
+                      <li key={technology}>{technology}</li>
+                    ))}
+                  </ul>
                 </section>
-              ) : null}
+                {project.backendDetails ? (
+                  <section className="project-detail-section">
+                    <p className="project-section-label">Backend</p>
+                    <p>{project.backendDetails}</p>
+                    {project.backendCapabilities ? (
+                      <div>
+                        <strong>Capabilities</strong>
+                        <ul className="project-capabilities project-capabilities--compact">
+                          {project.backendCapabilities.slice(0, 3).map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+                    {project.backendStack ? (
+                      <ul className="project-tech-list project-tech-list--wide">
+                        {project.backendStack.map((technology) => (
+                          <li key={technology}>{technology}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                ) : null}
+              </div>
               <section className="project-reliability">
-                <p className="project-section-label">Reliability notes</p>
+                <p className="project-section-label">Reliability</p>
                 <div>
-                  {project.securityReliability.map((note) => (
+                  {project.securityReliability.slice(0, 2).map((note) => (
                     <span key={note}>{note}</span>
                   ))}
                 </div>
               </section>
-              <p className="project-note">{project.notes}</p>
             </div>
           </article>
         ))}

@@ -1,74 +1,170 @@
 import type { Metadata } from "next";
+import { ArrowUpRight, BookOpen, Code2, Layers3, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { PageIntro } from "@/components/ui/page-intro";
-import { SiteHeader } from "@/components/ui/site-header";
-import { blogPosts } from "@/data/content";
+import { projects, techStack } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Blog",
 };
 
+const articleThemes = [
+  {
+    title: "What Presynx taught me about healthcare kiosk workflows",
+    eyebrow: "Featured note",
+    readTime: "8 min read",
+    date: "May 2026",
+    tags: ["Flutter", "Kiosk", "Healthcare", "Laravel"],
+    icon: Sparkles,
+    projectSlug: "presynx",
+    summary:
+      "A practical look at device registration, queue generation, visitor lookup, OTP verification, serving boards, and staff workflows in a real healthcare queue platform.",
+  },
+  {
+    title: "Building responsive Flutter product screens that stay usable",
+    eyebrow: "Interface notes",
+    readTime: "6 min read",
+    date: "Apr 2026",
+    tags: ["Responsive UI", "Flutter", "Product"],
+    icon: Layers3,
+    projectSlug: "yujix",
+    summary:
+      "Lessons from app screens that need to handle meetings, contacts, billing, profiles, notifications, and dense user journeys across web and mobile widths.",
+  },
+  {
+    title: "How I think about API-heavy mobile app flows",
+    eyebrow: "Engineering notes",
+    readTime: "7 min read",
+    date: "Mar 2026",
+    tags: ["Dio", "REST APIs", "State"],
+    icon: Code2,
+    projectSlug: "presynx",
+    summary:
+      "How routing, BLoC state boundaries, secure local storage, API responses, and retry-friendly UI patterns fit together when app flows depend on backend coordination.",
+  },
+  {
+    title: "Using AI tools while still owning engineering decisions",
+    eyebrow: "Workflow notes",
+    readTime: "5 min read",
+    date: "Feb 2026",
+    tags: ["Codex", "Cursor", "Claude", "Workflow"],
+    icon: BookOpen,
+    projectSlug: "ongoing-forge",
+    summary:
+      "A grounded view of using AI tools for faster iteration while keeping control over structure, validation, product behavior, and implementation quality.",
+  },
+];
+
 export default function BlogPage() {
-  const featured = blogPosts.find((post) => post.featured) ?? blogPosts[0];
-  const latest = blogPosts.filter((post) => post !== featured);
-  const tags = Array.from(new Set(blogPosts.flatMap((post) => post.tags)));
+  const featured = articleThemes[0];
+  const featuredProject = projects.find((project) => project.slug === featured.projectSlug) ?? projects[0];
+  const projectNotes = projects.map((project) => ({
+    title: `${project.title}: ${project.category}`,
+    summary: project.summary,
+    tags: project.technologies.slice(0, 4),
+    href: project.liveUrl,
+    tone: project.tone,
+  }));
 
   return (
-    <main className="grain pb-20">
-      <SiteHeader />
-      <PageIntro
-        eyebrow="The Pensieve"
-        title="Handpicked insights from Flutter, product work, and AI-assisted development."
-        description="A static editorial surface for notes, case-study thinking, and practical engineering lessons."
-      />
+    <main className="inner-page blog-page page-frame">
+      <header className="page-heading page-heading--center">
+        <p>Project writing</p>
+        <h1>Build notes <em>from real work</em></h1>
+        <span>Practical notes from Flutter apps, product flows, integrations, and AI-assisted delivery.</span>
+      </header>
 
-      <section className="section-shell grid gap-6">
-        <div className="flex flex-wrap gap-2">
-          <span className="chip bg-[var(--accent)]/20 text-[var(--foreground)]">All Posts</span>
-          {tags.map((tag) => (
-            <span key={tag} className="chip">
-              {tag}
-            </span>
-          ))}
-          <span className="ml-auto hidden rounded-full border border-white/12 px-4 py-2 text-xs text-[var(--muted)] sm:inline-flex">
-            Search posts Ctrl K
-          </span>
-        </div>
-
-        <div>
-          <p className="eyebrow">Featured Articles</p>
-          <Link href="/blog" className="paper-panel mt-4 block rounded-[1.7rem] p-6 sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#17120d]/60">
-              Featured - {featured.readTime} - {featured.date}
-            </p>
-            <h2 className="display-title mt-4 max-w-3xl text-4xl leading-tight sm:text-5xl">
-              {featured.title}
-            </h2>
-            <p className="muted-on-paper mt-4 max-w-2xl text-base leading-8">{featured.excerpt}</p>
-          </Link>
-        </div>
-
-        <div>
-          <p className="eyebrow">Latest Articles</p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {latest.map((post) => (
-              <Link key={post.title} href="/blog" className="glass-panel rounded-[1.5rem] p-5">
-                <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
-                  {post.readTime} - {post.date}
-                </p>
-                <h2 className="display-title mt-4 text-2xl leading-tight">{post.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{post.excerpt}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="chip">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
+      <section className="blog-featured glass-panel">
+        <div className="blog-featured-copy">
+          <p className="section-label">{featured.eyebrow}</p>
+          <h2>{featured.title}</h2>
+          <p>{featured.summary}</p>
+          <div className="blog-meta-row">
+            <span>{featured.date}</span>
+            <span>{featured.readTime}</span>
+            <span>{featuredProject.title}</span>
+          </div>
+          <div className="blog-tags">
+            {featured.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
             ))}
           </div>
+          <Link className="primary-pill blog-read-link" href="/projects">
+            View related project <ArrowUpRight />
+          </Link>
         </div>
+        <div className={`blog-featured-card blog-featured-card--${featuredProject.tone}`} aria-hidden="true">
+          <span>{featuredProject.index}</span>
+          <strong>{featuredProject.title}</strong>
+          <p>{featuredProject.projectType}</p>
+        </div>
+      </section>
+
+      <section className="blog-section">
+        <div className="blog-section-heading">
+          <p className="section-label">Latest notes</p>
+          <h2>Short articles tied to the portfolio projects.</h2>
+        </div>
+        <div className="blog-article-grid">
+          {articleThemes.slice(1).map((article) => {
+            const Icon = article.icon;
+            const project = projects.find((item) => item.slug === article.projectSlug);
+            return (
+              <article className="blog-article-card glass-panel" key={article.title}>
+                <div className="blog-article-icon">
+                  <Icon aria-hidden="true" />
+                </div>
+                <p className="section-label">{article.eyebrow}</p>
+                <h3>{article.title}</h3>
+                <p>{article.summary}</p>
+                <div className="blog-meta-row">
+                  <span>{article.date}</span>
+                  <span>{article.readTime}</span>
+                  {project ? <span>{project.title}</span> : null}
+                </div>
+                <div className="blog-tags">
+                  {article.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="blog-section">
+        <div className="blog-section-heading">
+          <p className="section-label">Project index</p>
+          <h2>Case-study topics I can write deeper about.</h2>
+        </div>
+        <div className="blog-project-list">
+          {projectNotes.map((note) => (
+            <a
+              className={`blog-project-note blog-project-note--${note.tone}`}
+              href={note.href}
+              target="_blank"
+              rel="noreferrer"
+              key={note.title}
+            >
+              <div>
+                <h3>{note.title}</h3>
+                <p>{note.summary}</p>
+              </div>
+              <div className="blog-tags">
+                {note.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="blog-stack-strip" aria-label="Core stack">
+        {techStack.map((item) => (
+          <span key={item.name}>{item.name}</span>
+        ))}
       </section>
     </main>
   );
