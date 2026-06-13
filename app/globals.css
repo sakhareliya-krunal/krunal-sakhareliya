@@ -818,7 +818,10 @@ button:focus-visible {
   padding: 132px 0 90px;
 }
 
-.page-heading { margin-bottom: 56px; }
+.page-heading {
+  margin-bottom: 56px;
+  text-align: center;
+}
 
 .page-heading > p,
 .section-label {
@@ -840,8 +843,6 @@ button:focus-visible {
   color: var(--pink);
   font-weight: 400;
 }
-
-.page-heading--center { text-align: center; }
 
 .page-heading--center > span {
   display: block;
