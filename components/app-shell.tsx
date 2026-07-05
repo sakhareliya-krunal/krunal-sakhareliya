@@ -70,10 +70,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const focusFrame = window.requestAnimationFrame(() => searchRef.current?.focus());
+
+    let focusFrame: number | undefined;
+    const isMobileViewport = window.matchMedia("(max-width: 900px)").matches;
+    if (!isMobileViewport) {
+      focusFrame = window.requestAnimationFrame(() => searchRef.current?.focus());
+    }
 
     return () => {
-      window.cancelAnimationFrame(focusFrame);
+      if (focusFrame !== undefined) {
+        window.cancelAnimationFrame(focusFrame);
+      }
       document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
@@ -87,7 +94,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className={`app-shell ${pathname === "/" ? "is-home" : "is-inner"}`}>
+    <div className={`app-shell ${pathname === "/" ? "is-home" : "is-inner"} ${intro ? "is-greeting" : ""}`}>
       <BackgroundScene home={pathname === "/"} />
       <Link className="corner-logo" href="/" aria-label="Krunal Sakhareliya home">
         <KSLogo className="corner-logo-mark" />

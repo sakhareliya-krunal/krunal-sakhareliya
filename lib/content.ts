@@ -2,6 +2,7 @@ export const profile = {
   name: "Krunal Sakhareliya",
   title: "Flutter Developer",
   role: "Flutter Developer",
+  avatar: "/krunal.png",
   bio:
     "Flutter Developer with work experience at Ongoing Team from November 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
   location: "Ahmedabad, India",
@@ -17,6 +18,11 @@ export const profile = {
     { label: "Email", href: "mailto:sakhareliyakrunal03@gmail.com" },
   ],
 };
+
+export const portraitStack = {
+  backLabel: "FLUTTER",
+  middleLabel: "MOBILE",
+} as const;
 
 export type Project = {
   slug: string;
@@ -412,11 +418,12 @@ export const techStack: TechStackItem[] = [
 export type FavoriteTool = {
   name: string;
   icon: string;
+  emphasized?: boolean;
 };
 
 export const favoriteTools: FavoriteTool[] = [
   { name: "Claude", icon: "/uses/claude.svg" },
-  { name: "OpenAI Codex", icon: "/uses/openai.svg" },
+  { name: "OpenAI Codex", icon: "/uses/openai.svg", emphasized: true },
   { name: "Cursor", icon: "/uses/cursor.svg" },
-  { name: "Gemini", icon: "/uses/gemini.svg" },
+  { name: "Perplexity", icon: "/uses/perplexity.svg" },
 ];

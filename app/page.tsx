@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowDown, ArrowRight, Copy } from "lucide-react";
 import { HomeBento } from "@/components/home-bento";
 import { profile } from "@/lib/content";
@@ -19,7 +20,19 @@ export default function HomePage() {
           </h1>
           <p className="home-identity">
             Hello, I&apos;m <strong>{profile.name}</strong>
-            <span className="mini-avatar">KS</span>
+            <span className="mini-avatar">
+              <Image
+                src={profile.avatar}
+                alt=""
+                width={56}
+                height={36}
+                className="mini-avatar-image"
+                priority
+              />
+              <span className="mini-avatar-wave" aria-hidden="true">
+                👋
+              </span>
+            </span>
             a {profile.title}
           </p>
           <div className="home-actions">

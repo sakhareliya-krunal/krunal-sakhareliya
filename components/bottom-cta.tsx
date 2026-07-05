@@ -65,19 +65,22 @@ export function BottomCta() {
       </div>
 
       <div className="site-footbar-marquee" aria-hidden="true">
-        <span>Open to work &middot; Open to work &middot;</span>
-        <span>Open to work &middot; Open to work &middot;</span>
+        <div className="site-footbar-marquee-track">
+          <span>Open to work &middot; Open to work &middot;</span>
+          <span>Open to work &middot; Open to work &middot;</span>
+        </div>
       </div>
 
-      <div className="site-footbar-closer">
+      <div className="site-footbar-closer glass-panel">
+        <p className="section-label">Open to work</p>
         <h2>
-          <span>From concept to creation</span>
-          <span>Let&apos;s make it happen!</span>
+          From concept to creation.
+          <em>Let&apos;s make it happen.</em>
         </h2>
         <Link className="primary-pill site-footbar-cta" href="/contact">
           Get In Touch <ArrowUpRight />
         </Link>
-        <p>{profile.availability}</p>
+        <p className="site-footbar-closer-copy">{profile.availability}</p>
       </div>
     </footer>
   );

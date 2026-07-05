@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Github, Linkedin, MapPin } from "lucide-react";
-import { profile, skills } from "@/lib/content";
+import { portraitStack, profile, skills } from "@/lib/content";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -34,13 +35,27 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="portrait-stack" aria-label="Krunal profile visual">
-          <div className="portrait-card portrait-card--back">FLUTTER</div>
+          <div className="portrait-card portrait-card--back">
+            <div className="portrait-card-label portrait-card-label--back">
+              <span className="portrait-card-label-main">{portraitStack.backLabel}</span>
+            </div>
+          </div>
           <div className="portrait-card portrait-card--middle">
-            <span>PRODUCT</span>
-            <span>ENGINEERING</span>
+            <div className="portrait-card-label portrait-card-label--middle">
+              <span className="portrait-card-label-main">{portraitStack.middleLabel}</span>
+            </div>
           </div>
           <div className="portrait-card portrait-card--front">
-            <span className="portrait-initials">KS</span>
+            <span className="portrait-initials">
+              <Image
+                src={profile.avatar}
+                alt=""
+                fill
+                sizes="112px"
+                className="portrait-avatar"
+                priority
+              />
+            </span>
             <strong>{profile.name}</strong>
             <small>{profile.role}</small>
           </div>

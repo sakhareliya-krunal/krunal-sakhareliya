@@ -2,7 +2,10 @@ import Image from "next/image";
 import { favoriteTools, techStack } from "@/lib/content";
 
 export function HomeBento() {
-  const emphasizedToolIndex = Math.floor(favoriteTools.length / 2);
+  const emphasizedToolIndex = Math.max(
+    favoriteTools.findIndex((tool) => tool.emphasized),
+    0,
+  );
 
   return (
     <section className="home-bento" id="home-bento" aria-label="Tech stack and tools">

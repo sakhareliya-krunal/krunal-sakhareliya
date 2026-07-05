@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { createElement } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AppShell } from "@/components/app-shell";
@@ -36,8 +36,21 @@ vi.mock("framer-motion", () => ({
 }));
 
 describe("AppShell mobile navigation", () => {
+  const matchMediaMock = vi.fn();
+
   beforeEach(() => {
     document.body.style.overflow = "";
+    matchMediaMock.mockImplementation((query: string) => ({
+      matches: query === "(max-width: 900px)",
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+    vi.stubGlobal("matchMedia", matchMediaMock);
   });
 
   it("opens, filters, and closes the command sheet", async () => {
@@ -48,23 +61,37 @@ describe("AppShell mobile navigation", () => {
     );
 
     expect(screen.getByText("Project content")).toBeVisible();
+    expect(screen.getByText(/Good (Morning|Afternoon|Evening|Night)|Hello/)).toBeVisible();
+
+    await waitFor(
+      () => {
+        const trigger = screen
+          .getAllByRole("button", { name: "Open navigation" })
+          .find((button) => button.classList.contains("mobile-nav-trigger"));
+        expect(trigger).toBeDefined();
+        expect(trigger).toHaveTextContent("Projects");
+      },
+      { timeout: 1000 },
+    );
+
     const trigger = screen
       .getAllByRole("button", { name: "Open navigation" })
       .find((button) => button.classList.contains("mobile-nav-trigger"));
     expect(trigger).toBeDefined();
     if (!trigger) throw new Error("Mobile navigation trigger not found");
-    expect(trigger).toHaveTextContent("Projects");
 
     fireEvent.click(trigger);
     const dialog = screen.getByRole("dialog", { name: "Site navigation" });
     expect(dialog).toBeVisible();
     expect(document.body.style.overflow).toBe("hidden");
+    expect(screen.getByRole("textbox", { name: "Search navigation" })).not.toHaveFocus();
 
     fireEvent.change(screen.getByRole("textbox", { name: "Search navigation" }), {
-      target: { value: "cont" },
+      target: { value: "proj" },
     });
-    expect(screen.getByRole("link", { name: "Contact" })).toBeVisible();
-    expect(screen.queryByRole("link", { name: "About" })).not.toBeInTheDocument();
+    const filteredSheet = screen.getByRole("dialog", { name: "Site navigation" });
+    expect(within(filteredSheet).getByRole("link", { name: "Projects" })).toBeVisible();
+    expect(within(filteredSheet).queryByRole("link", { name: "About" })).not.toBeInTheDocument();
 
     fireEvent.keyDown(window, { key: "Escape" });
     await waitFor(() => {
