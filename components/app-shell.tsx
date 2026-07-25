@@ -11,6 +11,7 @@ import {
   UserRound,
   X,
   BriefcaseBusiness,
+  FileText,
   FolderKanban,
 } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +27,16 @@ const links = [
   { href: "/about", label: "About", icon: UserRound },
   { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/experience", label: "Experience", icon: BriefcaseBusiness },
+  { href: "/resume", label: "Resume", icon: FileText },
 ];
+
+function getGreetingIcon(greeting: string) {
+  if (greeting === "Good Morning") return "🌅";
+  if (greeting === "Good Afternoon") return "☀️";
+  if (greeting === "Good Evening") return "🌆";
+  if (greeting === "Good Night") return "🌙";
+  return "👋";
+}
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -43,12 +53,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    const greetingFrame = window.requestAnimationFrame(() => {
+    const greetingDelay = reducedMotion ? 175 : 800;
+    const greetingTimer = window.setTimeout(() => {
       setGreeting(getGreeting(new Date().getHours()));
-    });
+    }, greetingDelay);
     const timer = window.setTimeout(() => setIntro(false), reducedMotion ? 350 : 1500);
     return () => {
-      window.cancelAnimationFrame(greetingFrame);
+      window.clearTimeout(greetingTimer);
       window.clearTimeout(timer);
     };
   }, [reducedMotion]);
@@ -138,8 +149,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <span>{greeting === "Good Night" ? "🌙" : "🌅"}</span>
-                {greeting}
+                <span>{greeting}</span>
+                <span className="greeting-icon" aria-hidden="true">
+                  {getGreetingIcon(greeting)}
+                </span>
               </motion.div>
             ) : (
               <motion.nav

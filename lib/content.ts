@@ -384,6 +384,93 @@ export const education = [
   },
 ];
 
+export const resume = {
+  downloadHref: "/krunal-sakhareliya-cv.pdf",
+  introduction:
+    "Flutter Developer with 1 year of professional experience building cross-platform applications for Android, iOS, and Web using Flutter and Dart. Strong in responsive UI development, REST API integration, and scalable state management with BLoC. Experienced in performance optimization, clean architecture, and collaborative agile environments.",
+  contact: [
+    { label: "GitHub", value: "sakhareliya-krunal", href: profile.github },
+    { label: "LinkedIn", value: "krunal-sakhareliya", href: profile.linkedin },
+    { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+    { label: "Mobile", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
+  ],
+  experience: [
+    {
+      period: "Oct 2025 - Present",
+      title: "AI-Assisted Product Building",
+      organization: "Websites and Applications",
+      description:
+        "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to build websites and applications with faster iteration, stronger execution, and improved development workflows.",
+    },
+    {
+      period: "Nov 2024 - Oct 2025",
+      title: "Flutter Developer",
+      organization: "Ongoing Team",
+      description:
+        "Worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements. Contributed to scalable mobile application development and collaborative agile workflows.",
+    },
+    {
+      period: "Nov 2024 - Jan 2025",
+      title: "Internship",
+      organization: "Ongoing Team",
+      description:
+        "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of professional company experience.",
+    },
+  ],
+  projects: [
+    {
+      title: "Presynx",
+      href: "https://presynx.com/",
+      description:
+        "Presynx is a multi-tenant queue management solution for clinics, hospitals, and healthcare branches. Contributed to Flutter-based kiosk and staff/admin platforms handling patient check-in, token generation, queue display, doctor and service routing, consultation workflows, reporting, and organization-level administration with responsive and scalable UI architecture.",
+    },
+    {
+      title: "Yujix",
+      href: "https://app.yujix.com/",
+      description:
+        "Yujix is a productivity and business management platform focused on delivering a seamless user experience across web and mobile applications. Built Flutter interfaces for meetings, contacts, surveys, events, quotations, invoices, subscriptions, notifications, authentication flows, and account management with adaptive responsive layouts.",
+    },
+    {
+      title: "Trust Up",
+      href: "https://trustup.app/",
+      description:
+        "Trust Up is a community-driven platform designed to help users discover needs, offers, skills, goods, and local opportunities within one connected ecosystem. Worked on Flutter application modules focused on community hubs, resource discovery, communication flows, and accessible interfaces that support collaboration and real-world connections.",
+    },
+    {
+      title: "Ongoing Forge",
+      href: "https://ongoingforge.com/",
+      description:
+        "Ongoing Forge is a SaaS project-management and collaboration platform built for structured organizational workflows and operational management. Contributed to product workflows involving Laravel backend services, MySQL-based data management, and Vue.js-powered interfaces supporting project execution, collaboration, communication, and organization management.",
+    },
+  ],
+  education: [
+    {
+      period: "2022 - 2025",
+      title: "Bachelor's Degree in Computer Applications",
+      organization: "Silver Oak University",
+      result: "CGPA: 8.67/10",
+    },
+    {
+      period: "2022",
+      title: "Class 12th",
+      organization: "Higher Secondary",
+      result: "84.05%",
+    },
+    {
+      period: "2020",
+      title: "Class 10th",
+      organization: "Secondary School",
+      result: "86.45%",
+    },
+  ],
+  skillGroups: [
+    { title: "Mobile Development", items: ["Flutter", "Dart", "Firebase"] },
+    { title: "Tools & Technologies", items: ["REST APIs", "Dio", "BLoC", "Git", "GitHub"] },
+    { title: "Architecture", items: ["Clean Architecture", "Responsive UI", "State Management"] },
+    { title: "AI & Coding Agents", items: ["OpenAI Codex", "Claude", "Cursor"] },
+  ],
+} as const;
+
 export const skills = [
   "Flutter",
   "Dart",
