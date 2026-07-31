@@ -52,9 +52,89 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "ventures-mart",
+    title: "Ventures Mart",
+    index: "01",
+    category: "E-commerce storefront",
+    projectType: "E-commerce storefront",
+    summary:
+      "India-focused e-commerce platform for curated toys and lunch boxes, built with Laravel and Vue 3, including Razorpay checkout, GST-aware totals, and courier-partner fulfillment support.",
+    role:
+      "Full-stack web developer building the Laravel API, Vue 3 storefront, admin commerce tooling, Razorpay payment flows, and order fulfillment workflows.",
+    overview:
+      "Ventures Mart is an India-focused online store for curated toys and everyday lunch boxes. The product combines a Vue 3 customer storefront with a Laravel backend for catalog, cart, checkout, orders, authentication, and admin operations, with Razorpay prepaid payments, COD, GST-aware pricing, and nationwide courier-partner based delivery support.",
+    productCapabilities: [
+      "Customers can browse toys and lunch-box categories, filter and search products, manage cart and wishlist, and complete checkout with saved addresses.",
+      "Checkout supports Razorpay prepaid payments and cash on delivery, with GST-aware order totals and order confirmation history.",
+      "Administrators can manage products, categories, orders, users, addresses, blog content, and contact messages from a dedicated admin suite.",
+    ],
+    frontendDetails:
+      "The storefront is a Vue 3 SPA built with Vue Router, Pinia, and Axios, covering shop browsing, product detail, cart, wishlist, checkout, auth, profile, and content pages for an India-focused retail experience.",
+    frontendArchitecture: [
+      "Vue 3 Composition API storefront organized around routed customer pages, Pinia stores for cart/auth/theme state, and Axios-backed API communication.",
+      "Checkout UI integrates Razorpay for prepaid payment initiation and verification alongside COD selection.",
+      "Admin surfaces support catalog CRUD, order status handling, users, blog editing, and operational support workflows.",
+    ],
+    frontendFeatures: [
+      "Category browsing for toys and lunch boxes, product variants, reviews, search, sorting, and price filters.",
+      "Guest and authenticated cart/wishlist flows, address management, checkout, and order confirmation pages.",
+      "Razorpay checkout UI, COD option, Google sign-in support, profile management, and WhatsApp support entry points.",
+      "Admin product and category management with image uploads, order handling, blog posts, and contact message review.",
+    ],
+    technologies: ["Laravel", "Vue.js", "MySQL", "Razorpay", "Sanctum", "GST", "Pinia", "Vite"],
+    frontendStack: [
+      "Vue 3",
+      "Vue Router",
+      "Pinia",
+      "Axios",
+      "Vite",
+      "Lucide Icons",
+      "TipTap",
+      "Unhead",
+      "Responsive UI",
+    ],
+    backendDetails:
+      "The backend is built with Laravel and MySQL, exposing Sanctum-authenticated APIs for catalog, cart, checkout, orders, auth, admin commerce operations, and Razorpay payment verification plus webhooks.",
+    backendArchitecture: [
+      "Laravel structures commerce domains around products, categories, carts, wishlists, addresses, orders, users, blog, and contact messages.",
+      "RazorpayService and order services create payment orders, verify signatures, handle webhooks, and finalize paid or COD checkouts.",
+      "GST configuration supports India tax calculation for seller-state aware CGST/SGST and IGST handling during checkout totals.",
+    ],
+    backendCapabilities: [
+      "Catalog and inventory-oriented product/category APIs with image handling for the storefront and admin.",
+      "Cart, wishlist, address, checkout, and order history APIs for guest and authenticated shoppers.",
+      "Razorpay order creation, payment verification, webhook processing, and COD checkout finalization.",
+      "Admin APIs for products, categories, orders, users, blog posts, contact messages, and operational error visibility.",
+      "Courier-partner based nationwide fulfillment support through shipping and delivery workflows tied to placed orders.",
+    ],
+    backendStack: [
+      "PHP 8.3+",
+      "Laravel",
+      "MySQL",
+      "Laravel Sanctum",
+      "Razorpay SDK",
+      "Google Identity",
+      "GST configuration",
+    ],
+    securityReliability: [
+      "Sanctum cookie SPA authentication, validated checkout requests, and payment-method constraints for Razorpay and COD.",
+      "Razorpay signature verification and webhook handling to keep paid order state consistent after checkout.",
+      "Throttled and validated API flows for auth, checkout, and admin mutations to protect commerce operations.",
+    ],
+    notes:
+      "Ventures Mart highlights full-stack e-commerce delivery with Laravel and Vue 3, including Razorpay payments, GST-aware checkout, admin commerce tooling, and courier-partner based nationwide fulfillment.",
+    liveUrl: "https://venturesmart.in/",
+    tone: "violet",
+    features: [
+      "Toys and lunch-box catalog, cart, wishlist, and GST-aware checkout",
+      "Razorpay prepaid payments, COD, order confirmation, and admin order tooling",
+      "Courier-partner based nationwide fulfillment and storefront support flows",
+    ],
+  },
+  {
     slug: "presynx",
     title: "Presynx",
-    index: "01",
+    index: "02",
     category: "Healthcare queue platform",
     projectType: "Healthcare queue platform",
     summary:
@@ -142,7 +222,7 @@ export const projects: Project[] = [
   {
     slug: "yujix",
     title: "Yujix",
-    index: "02",
+    index: "03",
     category: "Business productivity app",
     projectType: "Business productivity app",
     summary:
@@ -211,7 +291,7 @@ export const projects: Project[] = [
   {
     slug: "trust-up",
     title: "Trust Up",
-    index: "03",
+    index: "04",
     category: "Community platform",
     projectType: "Community resource platform",
     summary:
@@ -265,7 +345,7 @@ export const projects: Project[] = [
   {
     slug: "ongoing-forge",
     title: "Ongoing Forge",
-    index: "04",
+    index: "05",
     category: "SaaS collaboration suite",
     projectType: "SaaS collaboration suite",
     summary:
@@ -399,48 +479,77 @@ export const resume = {
       period: "Oct 2025 - Present",
       title: "AI-Assisted Product Building",
       organization: "Websites and Applications",
-      description:
-        "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to build websites and applications with faster iteration, stronger execution, and improved development workflows.",
+      bullets: [
+        "Build websites and applications with Agentic AI tools such as Claude, OpenAI Codex, and Cursor.",
+        "Accelerate iteration while keeping structure, validation, and delivery quality under control.",
+        "Improve personal and client workflows through prompt-driven product execution.",
+      ],
     },
     {
       period: "Nov 2024 - Oct 2025",
       title: "Flutter Developer",
       organization: "Ongoing Team",
-      description:
-        "Worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements. Contributed to scalable mobile application development and collaborative agile workflows.",
+      bullets: [
+        "Built Flutter application interfaces, API integrations, and navigation flows for company products.",
+        "Delivered responsive UI across Android, iOS, and web with Dio, BLoC, and Firebase services.",
+        "Collaborated in agile workflows covering feature delivery, debugging, and store-ready releases.",
+      ],
     },
     {
       period: "Nov 2024 - Jan 2025",
       title: "Internship",
       organization: "Ongoing Team",
-      description:
-        "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of professional company experience.",
+      bullets: [
+        "Completed an internship focused on development tasks and product workflows.",
+        "Supported team-based execution during the first phase of professional company experience.",
+      ],
     },
   ],
   projects: [
     {
+      title: "Ventures Mart",
+      href: "https://venturesmart.in/",
+      bullets: [
+        "Built an India-focused e-commerce SPA for toys and lunch boxes with Laravel + Vue 3.",
+        "Implemented Razorpay prepaid checkout, COD, GST-aware totals, cart/wishlist, and order flows.",
+        "Delivered admin catalog/order tooling plus courier-partner based nationwide fulfillment support.",
+      ],
+    },
+    {
       title: "Presynx",
       href: "https://presynx.com/",
-      description:
-        "Presynx is a multi-tenant queue management solution for clinics, hospitals, and healthcare branches. Contributed to Flutter-based kiosk and staff/admin platforms handling patient check-in, token generation, queue display, doctor and service routing, consultation workflows, reporting, and organization-level administration with responsive and scalable UI architecture.",
+      bullets: [
+        "Multi-tenant queue management for clinics, hospitals, and healthcare branches.",
+        "Contributed Flutter kiosk and staff/admin flows for check-in, tokens, routing, and reporting.",
+        "Shipped responsive, scalable UI architecture for public and authenticated experiences.",
+      ],
     },
     {
       title: "Yujix",
       href: "https://app.yujix.com/",
-      description:
-        "Yujix is a productivity and business management platform focused on delivering a seamless user experience across web and mobile applications. Built Flutter interfaces for meetings, contacts, surveys, events, quotations, invoices, subscriptions, notifications, authentication flows, and account management with adaptive responsive layouts.",
+      bullets: [
+        "Productivity and business management platform spanning web and mobile.",
+        "Built Flutter interfaces for meetings, contacts, surveys, events, quotations, and invoices.",
+        "Implemented authentication, subscriptions, notifications, and adaptive responsive layouts.",
+      ],
     },
     {
       title: "Trust Up",
       href: "https://trustup.app/",
-      description:
-        "Trust Up is a community-driven platform designed to help users discover needs, offers, skills, goods, and local opportunities within one connected ecosystem. Worked on Flutter application modules focused on community hubs, resource discovery, communication flows, and accessible interfaces that support collaboration and real-world connections.",
+      bullets: [
+        "Community platform for discovering needs, offers, skills, goods, and local opportunities.",
+        "Worked on Flutter modules for community hubs, resource discovery, and communication flows.",
+        "Focused on accessible interfaces that support collaboration and real-world connections.",
+      ],
     },
     {
       title: "Ongoing Forge",
       href: "https://ongoingforge.com/",
-      description:
-        "Ongoing Forge is a SaaS project-management and collaboration platform built for structured organizational workflows and operational management. Contributed to product workflows involving Laravel backend services, MySQL-based data management, and Vue.js-powered interfaces supporting project execution, collaboration, communication, and organization management.",
+      bullets: [
+        "SaaS project-management and collaboration platform for organizational workflows.",
+        "Contributed to Laravel, MySQL, and Vue.js product flows for execution and collaboration.",
+        "Supported communication and organization-management surfaces across the platform.",
+      ],
     },
   ],
   education: [

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+import { ProjectHashFocus } from "@/components/project-hash-focus";
 import { projects } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Projects" };
@@ -7,6 +8,7 @@ export const metadata: Metadata = { title: "Projects" };
 export default function ProjectsPage() {
   return (
     <main className="inner-page projects-page page-frame">
+      <ProjectHashFocus />
       <header className="page-heading page-heading--center">
         <p>Case studies</p>
         <h1>Curated <em>work</em></h1>
@@ -14,7 +16,11 @@ export default function ProjectsPage() {
       </header>
       <section className="projects-grid">
         {projects.map((project) => (
-          <article className={`project-card project-card--${project.tone}`} key={project.slug}>
+          <article
+            id={project.slug}
+            className={`project-card project-card--${project.tone}`}
+            key={project.slug}
+          >
             <div className="project-topline">
               <span>{project.index}</span>
               <span>{project.projectType}</span>

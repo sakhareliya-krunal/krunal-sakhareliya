@@ -2,17 +2,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowRight, Copy } from "lucide-react";
 import { HomeBento } from "@/components/home-bento";
-import { profile } from "@/lib/content";
+import { profile, projects } from "@/lib/content";
 import { CopyEmailButton } from "@/components/copy-email-button";
 
 export default function HomePage() {
+  const featured = projects[0];
+
   return (
     <main className="home-page page-frame">
       <section className="home-hero-viewport">
         <section className="home-hero">
           <div className="home-eyebrow">
             <span>New</span>
-            <Link href="/projects">Presynx healthcare queue platform</Link>
+            <Link href={`/projects#${featured.slug}`}>
+              {featured.title} {featured.projectType.toLowerCase()}
+            </Link>
           </div>
           <h1>
             Apps that feel designed.

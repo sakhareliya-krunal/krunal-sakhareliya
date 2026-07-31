@@ -41,7 +41,10 @@ describe("ResumePage", () => {
       "href",
       "/krunal-sakhareliya-cv.pdf",
     );
+    expect(screen.getByRole("heading", { name: "Ventures Mart" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Presynx" })).toBeVisible();
+    expect(screen.getAllByText("Ongoing Team").length).toBeGreaterThan(0);
     expect(screen.getByText("Silver Oak University")).toBeVisible();
+    expect(screen.getByText("CGPA: 8.67/10")).toBeVisible();
   });
 });

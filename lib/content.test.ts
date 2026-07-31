@@ -2,8 +2,9 @@ import { describe, expect, it } from "vitest";
 import { profile, projects } from "@/lib/content";
 
 describe("project content", () => {
-  it("contains the four deployed portfolio projects and secure destinations", () => {
+  it("contains the five deployed portfolio projects and secure destinations", () => {
     expect(projects.map((project) => project.title)).toEqual([
+      "Ventures Mart",
       "Presynx",
       "Yujix",
       "Trust Up",
@@ -24,17 +25,23 @@ describe("project content", () => {
       expect(project.notes.length).toBeGreaterThan(20);
     }
 
-    expect(projects[0].technologies).toContain("Dio");
-    expect(projects[0].role).toContain("OpenAI Codex");
+    const venturesMart = projects.find((project) => project.slug === "ventures-mart");
+    const presynx = projects.find((project) => project.slug === "presynx");
+
+    expect(venturesMart?.liveUrl).toBe("https://venturesmart.in/");
+    expect(venturesMart?.technologies).toContain("Razorpay");
+    expect(presynx?.technologies).toContain("Dio");
+    expect(presynx?.role).toContain("OpenAI Codex");
   });
 
   it("includes backend details for full-stack projects", () => {
+    const venturesMart = projects.find((project) => project.slug === "ventures-mart");
     const presynx = projects.find((project) => project.slug === "presynx");
     const forge = projects.find((project) => project.slug === "ongoing-forge");
     const yujix = projects.find((project) => project.slug === "yujix");
     const trustUp = projects.find((project) => project.slug === "trust-up");
 
-    for (const project of [presynx, forge]) {
+    for (const project of [venturesMart, presynx, forge]) {
       expect(project?.backendDetails).toBeTruthy();
       expect(project?.backendArchitecture?.length).toBeGreaterThanOrEqual(2);
       expect(project?.backendCapabilities?.length).toBeGreaterThanOrEqual(2);

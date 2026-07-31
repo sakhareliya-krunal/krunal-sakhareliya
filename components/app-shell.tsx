@@ -21,6 +21,7 @@ import { BottomCta } from "@/components/bottom-cta";
 import { getGreeting } from "@/lib/greeting";
 import { profile } from "@/lib/content";
 import { KSLogo } from "@/components/ks-logo";
+import { PageTransition } from "@/components/page-transition";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
@@ -261,7 +262,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       </AnimatePresence>
 
-      <div className="route-stage">{children}</div>
+      <div className="route-stage">
+        <PageTransition>{children}</PageTransition>
+      </div>
       <BottomCta />
     </div>
   );
