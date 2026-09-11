@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { experience, skills } from "@/lib/content";
+import { experience, experienceToolkit } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Experience" };
 
@@ -25,7 +25,14 @@ export default function ExperiencePage() {
         <aside className="skill-cloud glass-panel">
           <p className="section-label">Toolkit</p>
           <h2>Tools I use to move app ideas into production.</h2>
-          <div>{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+          {experienceToolkit.map((group) => (
+            <section className="toolkit-group" key={group.title}>
+              <h3>{group.title}</h3>
+              <ul className="toolkit-items">
+                {group.items.map((skill) => <li key={skill}>{skill}</li>)}
+              </ul>
+            </section>
+          ))}
         </aside>
       </section>
     </main>

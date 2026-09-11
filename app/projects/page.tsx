@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectHashFocus } from "@/components/project-hash-focus";
+import { ProjectLinks } from "@/components/project-links";
 import { projects } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Projects" };
@@ -33,6 +34,7 @@ export default function ProjectsPage() {
                 <h2>{project.title}</h2>
                 <p>{project.summary}</p>
               </div>
+              {project.playStoreUrl || project.appStoreUrl ? <ProjectLinks {...project} /> : null}
               <div className="project-case-panels">
                 <section>
                   <p className="project-section-label">Role</p>

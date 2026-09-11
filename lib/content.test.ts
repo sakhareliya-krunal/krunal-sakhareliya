@@ -2,8 +2,9 @@ import { describe, expect, it } from "vitest";
 import { profile, projects } from "@/lib/content";
 
 describe("project content", () => {
-  it("contains the five deployed portfolio projects and secure destinations", () => {
+  it("contains the six deployed portfolio projects and secure destinations", () => {
     expect(projects.map((project) => project.title)).toEqual([
+      "Ongoing Foods",
       "Ventures Mart",
       "Presynx",
       "Yujix",

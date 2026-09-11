@@ -1041,7 +1041,8 @@ button:focus-visible {
   border-radius: 26px;
 }
 
-.about-copy > p {
+.about-copy > p,
+.about-specialization p {
   margin: 0 0 22px;
   color: #b4b0ba;
   font-size: 15px;
@@ -1555,8 +1556,7 @@ button:focus-visible {
   height: fit-content;
   padding: 34px;
   border-radius: 24px;
-  position: sticky;
-  top: 95px;
+  position: static;
 }
 
 .skill-cloud h2 {
@@ -1567,9 +1567,25 @@ button:focus-visible {
   line-height: 1.08;
 }
 
-.skill-cloud > div { display: flex; flex-wrap: wrap; gap: 9px; }
+.toolkit-group + .toolkit-group { margin-top: 26px; }
 
-.skill-cloud span {
+.toolkit-group h3 {
+  margin: 0 0 12px;
+  color: #e2dce8;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.toolkit-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toolkit-items li {
   padding: 10px 13px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -3266,3 +3282,55 @@ a.resume-doc-contact-item:hover {
     scroll-behavior: auto !important;
   }
 }
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.project-details > .project-links { margin-top: 18px; }
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #e2dce8;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.project-links a:hover { background: rgb(255 255 255 / 8%); }
+.project-links a:focus-visible { outline: 2px solid #c4a5ff; outline-offset: 3px; }
+.project-links svg { width: 14px; height: 14px; flex-shrink: 0; }
+.resume-entry-heading:has(.project-links) { flex-wrap: wrap; }
+
+.about-specialization h2 {
+  margin: 0 0 10px;
+  color: #eee8f2;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.resume-specializations {
+  max-width: 720px;
+  margin: 14px auto 0;
+  text-align: left;
+}
+
+.about-copy > p:first-child,
+.about-specialization p,
+.resume-doc-summary {
+  text-align: justify;
+  text-align-last: left;
+}
+
+.resume-specializations .resume-doc-summary { margin-top: 10px; }
+.resume-specializations strong { color: #eee8f2; font-weight: 600; }

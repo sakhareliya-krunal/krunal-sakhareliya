@@ -1,10 +1,28 @@
+export const professionalSummary = {
+  introduction:
+    "Software developer with over 1.5 years of professional experience, specializing in cross-platform application development with Flutter and full-stack web development with Laravel.",
+  specializations: [
+    {
+      title: "Flutter Development",
+      description:
+        "Builds cross-platform applications for Android, iOS, and Web using Flutter and Dart. Experienced in responsive UI, BLoC state management, REST API integration with Dio, Firebase services, and Google Maps integrations, with a focus on performance, clean architecture, and Play Store and App Store delivery.",
+    },
+    {
+      title: "Laravel Full-Stack Development",
+      description:
+        "Builds Laravel and MySQL backends, REST APIs, and web applications with Inertia.js, Vue, and Tailwind CSS. Experienced in authentication with Sanctum and Fortify, vendor dashboards, ordering workflows, subscriptions, payments, and loyalty systems, supported by automated testing.",
+    },
+  ],
+  background:
+    "Worked at Ongoing Team from February 2024 to October 2025. Uses AI-assisted workflows to build websites and applications while keeping structure, validation, and product quality under control.",
+} as const;
+
 export const profile = {
   name: "Krunal Sakhareliya",
   title: "Flutter Developer",
   role: "Flutter Developer",
   avatar: "/krunal.png",
-  bio:
-    "Flutter Developer with work experience at Ongoing Team from November 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
+  bio: `${professionalSummary.introduction} ${professionalSummary.background}`,
   location: "Ahmedabad, India",
   availability:
     "Available for Flutter roles, product engineering opportunities, and mobile app collaborations.",
@@ -46,15 +64,103 @@ export type Project = {
   securityReliability: string[];
   notes: string;
   liveUrl: string;
+  playStoreUrl?: string;
+  appStoreUrl?: string;
   tone: "cyan" | "violet" | "rose" | "amber";
   features: string[];
 };
 
 export const projects: Project[] = [
   {
+    slug: "ongoing-foods",
+    title: "Ongoing Foods",
+    index: "01",
+    category: "Full-stack food-tech",
+    projectType: "Full-stack food-tech",
+    summary: "Scheduled meal ordering for repeat customers and kitchens.",
+    role: "Full-stack — Flutter app, Laravel API, vendor admin, payments, subscriptions, and store release.",
+    overview: "Food ordering built for ongoing meals. Daily rotating plans, team lunches, subscriptions, and scheduled deliveries — not one-off restaurant discovery.",
+    productCapabilities: [
+      "Daily rotating menus, delivery slots, meal subscriptions, UPI payments, and loyalty coins for repeat customers.",
+      "Vendors run kitchen operations from a dashboard: menus, schedules, orders, customer CRM, and team roles.",
+    ],
+    frontendDetails: "Flutter customer + admin app for scheduled meal delivery: OTP auth, slot-based ordering, UPI, Firebase push, Google Maps addresses, loyalty wallet, and subscriptions. Production apps for iOS and Android.",
+    frontendArchitecture: [
+      "Bloc + Cubit state management, GoRouter shell tabs and auth guards, and Dio with a repository layer across 20+ screens.",
+      "Hive session storage and flutter_secure_storage tokens; Google Maps/Places addresses and Firebase Cloud Messaging with local notifications.",
+    ],
+    frontendFeatures: [
+      "Phone OTP login, guest browsing, day-grouped menus, variants and add-ons, per-item delivery slots, persistent cart, checkout, and UPI deep links with payment status verification.",
+      "Google Maps/Places saved addresses, order history with polling and push deep-links, subscription pause/resume/cancel and skipped dates, and a loyalty wallet.",
+      "Embedded vendor admin with 2FA and order fulfilment; menu reminders, image caching, forced updates, and in-app store reviews.",
+    ],
+    technologies: [
+      "Flutter",
+      "Laravel 13",
+      "Vue 3",
+      "UPI",
+      "Firebase Messaging",
+      "MySQL",
+      "BLoC",
+      "GoRouter",
+    ],
+    frontendStack: [
+      "Flutter",
+      "Dart 3.9",
+      "Material 3",
+      "BLoC / Cubit",
+      "GoRouter",
+      "Dio",
+      "Hive",
+      "flutter_secure_storage",
+      "Google Maps / Places",
+      "Geolocator",
+      "Firebase Messaging",
+      "url_launcher",
+    ],
+    backendDetails: "Laravel 13 meal-ops platform: team-scoped kitchens, slot/cut-off menus, subscriptions, UPI reconciliation, loyalty, and Sanctum APIs for iOS/Android. Inertia + Vue powers the customer storefront, vendor admin, and public site.",
+    backendArchitecture: [
+      "Fortify email/password, 2FA, and passkeys for vendors; Sanctum phone OTP and token refresh for mobile customers, with Combirds SMS.",
+      "Weekly menu grid, serving periods, delivery slots, lead times, cut-offs, and order horizons; scheduled subscription fulfilment with a 14-day lookahead.",
+    ],
+    backendCapabilities: [
+      "Weekly kitchen schedules and cut-offs, web/mobile/manual orders, and daily or alternate-day subscriptions with automatic order creation, pause/resume/cancel, and skipped dates.",
+      "Team UPI ID → QR + deep link; customer submits UTR → vendor verifies. COD fallback, payment audit trail, and loyalty coins earned, reserved, and redeemed at checkout.",
+      "Vendor dashboard, catalog CRUD, CRM, team roles, SEO article CMS, force-update settings, and FCM order alerts and daily menu reminders; optional Discord order alerts.",
+    ],
+    backendStack: [
+      "PHP 8.4",
+      "Laravel 13",
+      "MySQL",
+      "Inertia.js v3",
+      "Vue 3",
+      "Tailwind CSS v4",
+      "Vite",
+      "Sanctum",
+      "Fortify",
+      "Wayfinder",
+      "Pest 4",
+      "Playwright",
+    ],
+    securityReliability: [
+      "Idempotent order creation for safe mobile retries, team-scoped vendors, dual authentication, and a payment audit trail.",
+      "Automated Flutter widget/unit tests; Pest and browser tests covering ordering, subscriptions, payments, and mobile contracts.",
+    ],
+    notes: "Ongoing Foods brings scheduled meal ordering, repeat-customer subscriptions, and kitchen operations together across Flutter, Laravel, and Inertia/Vue.",
+    liveUrl: "https://ongoingfoods.com",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.ongoingfoods.app",
+    appStoreUrl: "https://apps.apple.com/in/app/ongoing-foods/id6787362479",
+    tone: "amber",
+    features: [
+      "Food ordering built for ongoing meals: daily rotating plans, team lunches, subscriptions, and scheduled deliveries.",
+      "Day-based menus, delivery slots, kitchen cut-offs, UPI, loyalty, and a vendor ops dashboard.",
+      "Built and shipped Ongoing Foods (Flutter, iOS + Android), live on Google Play and the App Store.",
+    ],
+  },
+  {
     slug: "ventures-mart",
     title: "Ventures Mart",
-    index: "01",
+    index: "02",
     category: "E-commerce storefront",
     projectType: "E-commerce storefront",
     summary:
@@ -134,7 +240,7 @@ export const projects: Project[] = [
   {
     slug: "presynx",
     title: "Presynx",
-    index: "02",
+    index: "03",
     category: "Healthcare queue platform",
     projectType: "Healthcare queue platform",
     summary:
@@ -222,7 +328,7 @@ export const projects: Project[] = [
   {
     slug: "yujix",
     title: "Yujix",
-    index: "03",
+    index: "04",
     category: "Business productivity app",
     projectType: "Business productivity app",
     summary:
@@ -291,7 +397,7 @@ export const projects: Project[] = [
   {
     slug: "trust-up",
     title: "Trust Up",
-    index: "04",
+    index: "05",
     category: "Community platform",
     projectType: "Community resource platform",
     summary:
@@ -345,7 +451,7 @@ export const projects: Project[] = [
   {
     slug: "ongoing-forge",
     title: "Ongoing Forge",
-    index: "05",
+    index: "06",
     category: "SaaS collaboration suite",
     projectType: "SaaS collaboration suite",
     summary:
@@ -420,7 +526,7 @@ export const experience = [
       "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of company experience.",
   },
   {
-    period: "Nov 2024 - Oct 2025",
+    period: "Feb 2024 - Oct 2025",
     title: "Work Experience",
     organization: "Ongoing Team",
     description:
@@ -432,13 +538,6 @@ export const experience = [
     organization: "Websites and Applications",
     description:
       "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to create websites and applications with faster iteration, stronger execution, and better development support.",
-  },
-  {
-    period: "Nov 2025 - Present",
-    title: "Prompt Engineering Basics",
-    organization: "AI Workflow Practice",
-    description:
-      "Learning how to guide AI systems more effectively through role definition, task clarity, and structured context for better results.",
   },
 ];
 
@@ -466,8 +565,7 @@ export const education = [
 
 export const resume = {
   downloadHref: "/krunal-sakhareliya-cv.pdf",
-  introduction:
-    "Flutter Developer with 1 year of professional experience building cross-platform applications for Android, iOS, and Web using Flutter and Dart. Strong in responsive UI development, REST API integration, and scalable state management with BLoC. Experienced in performance optimization, clean architecture, and collaborative agile environments.",
+  introduction: professionalSummary.introduction,
   contact: [
     { label: "GitHub", value: "sakhareliya-krunal", href: profile.github },
     { label: "LinkedIn", value: "krunal-sakhareliya", href: profile.linkedin },
@@ -486,7 +584,7 @@ export const resume = {
       ],
     },
     {
-      period: "Nov 2024 - Oct 2025",
+      period: "Feb 2024 - Oct 2025",
       title: "Flutter Developer",
       organization: "Ongoing Team",
       bullets: [
@@ -506,6 +604,17 @@ export const resume = {
     },
   ],
   projects: [
+    {
+      title: "Ongoing Foods",
+      href: projects[0].liveUrl,
+      playStoreUrl: projects[0].playStoreUrl,
+      appStoreUrl: projects[0].appStoreUrl,
+      bullets: [
+        "Scheduled meal-ordering platform for repeat customers and kitchen vendors: daily menus, delivery slots, subscriptions, UPI payments, loyalty coins, and a Flutter app backed by Laravel.",
+        "Built and shipped the Flutter iOS + Android app with Bloc, GoRouter, Dio, Google Maps/Places, FCM, and embedded vendor admin.",
+        "Designed the Laravel 13 + Inertia/Vue platform with team-scoped kitchens, subscription auto-fulfilment, UPI QR + UTR verification, and store releases.",
+      ],
+    },
     {
       title: "Ventures Mart",
       href: "https://venturesmart.in/",
@@ -573,7 +682,9 @@ export const resume = {
     },
   ],
   skillGroups: [
-    { title: "Mobile Development", items: ["Flutter", "Dart", "Firebase"] },
+    { title: "Backend & Web", items: ["Laravel", "PHP", "Inertia.js", "Vue 3", "Tailwind", "Sanctum", "Fortify", "MySQL", "Pest"] },
+    { title: "Product Delivery", items: ["OTP auth", "Scheduled delivery", "Subscriptions", "Loyalty", "SEO", "App Store / Play Store"] },
+    { title: "Mobile Development", items: ["Flutter", "Dart", "Material 3", "GoRouter", "Hive", "Firebase Messaging", "Google Maps", "UPI intents"] },
     { title: "Tools & Technologies", items: ["REST APIs", "Dio", "BLoC", "Git", "GitHub"] },
     { title: "Architecture", items: ["Clean Architecture", "Responsive UI", "State Management"] },
     { title: "AI & Coding Agents", items: ["OpenAI Codex", "Claude", "Cursor"] },
@@ -622,4 +733,42 @@ export const favoriteTools: FavoriteTool[] = [
   { name: "OpenAI Codex", icon: "/uses/openai.svg", emphasized: true },
   { name: "Cursor", icon: "/uses/cursor.svg" },
   { name: "Perplexity", icon: "/uses/perplexity.svg" },
+];
+
+export const productSkillCards = [
+  {
+    title: "Meal platform integrations",
+    description: "Scheduled ordering, subscriptions, loyalty, and mobile integrations for repeat customers and kitchen vendors.",
+    items: ["OTP auth", "Scheduled delivery", "Subscriptions", "Loyalty", "Google Maps", "UPI intents", "Hive", "Material 3"],
+  },
+  {
+    title: "Full-stack product delivery",
+    description: "Laravel APIs and Inertia/Vue storefronts and vendor dashboards, with tested workflows and mobile store releases.",
+    items: ["Laravel", "PHP", "Inertia.js", "Vue 3", "Tailwind", "Sanctum", "Fortify", "MySQL", "REST APIs", "Pest", "SEO", "App Store / Play Store"],
+  },
+];
+
+export type ExperienceToolkitGroup = {
+  title: "Frontend" | "Backend";
+  items: string[];
+};
+
+export const experienceToolkit: ExperienceToolkitGroup[] = [
+  {
+    title: "Frontend",
+    items: [
+      "Flutter", "Dart", "Material 3", "BLoC / Cubit", "GoRouter", "Dio",
+      "Hive", "Secure Storage", "Vue.js", "JavaScript", "TypeScript",
+      "Vue Router", "Pinia", "Axios", "Inertia.js", "Tailwind CSS", "Vite",
+      "Firebase Messaging", "Google Maps / Places", "Google Sign-In",
+      "UPI intents", "Razorpay Flutter", "Thermal Printing",
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      "PHP", "Laravel", "MySQL", "REST APIs", "Sanctum", "Fortify",
+      "Razorpay SDK", "Pest", "PHPUnit", "Playwright",
+    ],
+  },
 ];

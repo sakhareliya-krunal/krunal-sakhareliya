@@ -22,7 +22,7 @@ type Project = {
 export const profile = {
   name: "Krunal Sakhareliya",
   title: "Flutter Developer",
-  bio: "Flutter Developer with work experience at Ongoing Team from November 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
+  bio: "Software developer with more than 1.5 years of professional experience, specializing in Flutter and Laravel full-stack product development. Worked at Ongoing Team from February 2024 to October 2025, focused on responsive UI, API integration, Dio-based networking, BLoC application flows, Firebase services, multi-platform delivery, and Play Store and App Store deployment, now also using Agentic AI tools to build websites and applications more effectively.",
   location: "Ahmedabad, India",
   availability:
     "Available for Flutter roles, product engineering opportunities, and mobile app collaborations.",
@@ -64,22 +64,16 @@ export const experience = [
     summary: "Completed an internship at Ongoing Team, working on development tasks, product workflows, and team-based execution during the first phase of my company experience.",
   },
   {
-    period: "Nov 2024 – Oct 2025",
+    period: "Feb 2024 - Oct 2025",
     title: "Work Experience",
     subtitle: "Ongoing Team",
-    summary: "My work experience at Ongoing Team ran from November 2024 to October 2025, where I worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements.",
+    summary: "My work experience at Ongoing Team ran from February 2024 to October 2025, where I worked on Flutter application interfaces, API integrations, navigation flows, and company product requirements.",
   },
   {
     period: "Oct 2025 – Present",
     title: "AI-Assisted Product Building",
     subtitle: "Websites and Applications",
     summary: "Using Agentic AI tools such as Claude, OpenAI Codex, and Cursor to create websites and applications with faster iteration, stronger execution, and better development support.",
-  },
-  {
-    period: "Nov 2025 – Present",
-    title: "Prompt Engineering Basics",
-    subtitle: "AI Workflow Practice",
-    summary: "Learning how to guide AI systems more effectively through role definition, task clarity, and structured context for better results.",
   },
 ];
 

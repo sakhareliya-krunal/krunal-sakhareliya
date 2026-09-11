@@ -12,7 +12,8 @@ import {
   Phone,
   type LucideIcon,
 } from "lucide-react";
-import { profile, resume } from "@/lib/content";
+import { ProjectLinks } from "@/components/project-links";
+import { professionalSummary, profile, resume } from "@/lib/content";
 
 const contactIcons: Record<string, LucideIcon> = {
   GitHub: Github,
@@ -62,6 +63,14 @@ export function ResumePageContent() {
           <h1>{profile.name}</h1>
           <p className="resume-doc-role">{profile.role}</p>
           <p className="resume-doc-summary">{resume.introduction}</p>
+          <div className="resume-specializations">
+            {professionalSummary.specializations.map((specialization) => (
+              <p className="resume-doc-summary" key={specialization.title}>
+                <strong>{specialization.title}: </strong>
+                {specialization.description}
+              </p>
+            ))}
+          </div>
           <div className="resume-doc-contact" aria-label="Contact details">
             {resume.contact.map((item, index) => {
               const Icon = contactIcons[item.label] ?? Mail;
@@ -129,9 +138,18 @@ export function ResumePageContent() {
                       <div>
                         <h3>{project.title}</h3>
                       </div>
-                      <a href={project.href} target="_blank" rel="noreferrer">
-                        Visit <ArrowUpRight aria-hidden="true" />
-                      </a>
+                      {"playStoreUrl" in project ? (
+                        <ProjectLinks
+                          title={project.title}
+                          liveUrl={project.href}
+                          playStoreUrl={project.playStoreUrl}
+                          appStoreUrl={project.appStoreUrl}
+                        />
+                      ) : (
+                        <a href={project.href} target="_blank" rel="noreferrer">
+                          Visit <ArrowUpRight aria-hidden="true" />
+                        </a>
+                      )}
                     </div>
                     <ul>
                       {project.bullets.map((bullet) => (

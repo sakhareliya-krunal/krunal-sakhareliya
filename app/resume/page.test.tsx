@@ -36,11 +36,17 @@ describe("ResumePage", () => {
     render(<ResumePage />);
 
     expect(screen.getByRole("heading", { name: /Krunal Sakhareliya/i })).toBeVisible();
-    expect(screen.getByText(/Flutter Developer with 1 year/i)).toBeVisible();
+    expect(screen.getByText(/Software developer with over 1\.5 years of professional experience, specializing in cross-platform application development with Flutter and full-stack web development with Laravel/i)).toBeVisible();
+    expect(screen.getByText("Flutter Development:")).toBeVisible();
+    expect(screen.getByText("Laravel Full-Stack Development:")).toBeVisible();
     expect(screen.getByRole("link", { name: /Download CV/i })).toHaveAttribute(
       "href",
       "/krunal-sakhareliya-cv.pdf",
     );
+    expect(screen.getByRole("heading", { name: "Ongoing Foods" })).toBeVisible();
+    expect(screen.getByRole("link", { name: "Ongoing Foods: Web" })).toHaveAttribute("href", "https://ongoingfoods.com");
+    expect(screen.getByRole("link", { name: "Ongoing Foods: Google Play" })).toHaveAttribute("href", "https://play.google.com/store/apps/details?id=com.ongoingfoods.app");
+    expect(screen.getByRole("link", { name: "Ongoing Foods: App Store" })).toHaveAttribute("href", "https://apps.apple.com/in/app/ongoing-foods/id6787362479");
     expect(screen.getByRole("heading", { name: "Ventures Mart" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Presynx" })).toBeVisible();
     expect(screen.getAllByText("Ongoing Team").length).toBeGreaterThan(0);

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bot, Boxes, Cable, LayoutGrid, Rocket, ShieldCheck } from "lucide-react";
 import { LogoSlider } from "@/components/ui/logo-slider";
-import { projects, techStack } from "@/lib/content";
+import { productSkillCards, projects, techStack } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Skills",
@@ -14,6 +14,7 @@ const skillLogos = techStack.map((item) => ({
 }));
 
 const capabilityCards = [
+  ...productSkillCards.map((card, index) => ({ ...card, icon: index === 0 ? Cable : Boxes })),
   {
     title: "Mobile app architecture",
     description:
